@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import javax.persistence.Id;
 
-import com.imp.exceptions.CreateDateAfterEndDateException;
+import com.imp.exceptions.StartDateAfterEndDateException;
 
 public class Program {
 		@Id
@@ -19,7 +19,7 @@ public class Program {
 		
 	}
 
-	public Program(String title, String description, String ownerBadge, LocalDate startDate, LocalDate endDate) throws CreateDateAfterEndDateException {
+	public Program(String title, String description, String ownerBadge, LocalDate startDate, LocalDate endDate) throws StartDateAfterEndDateException {
 		super();
 		this.title = title;
 		this.description = description;
@@ -48,7 +48,7 @@ public class Program {
 		return ownerBadge;
 	}
 
-	public void setOwner(String ownerBadge) {
+	public void setOwnerBadge(String ownerBadge) {
 		this.ownerBadge = ownerBadge;
 	}
 
@@ -56,20 +56,23 @@ public class Program {
 		return startDate;
 	}
 
-	public void setStartDate(LocalDate startDate) {
-		this.startDate = startDate;
+	public void setStartDate(LocalDate startDate) throws StartDateAfterEndDateException {
+		if(!startDate.isAfter(this.endDate)) {
+			this.startDate = startDate;
+		}
+		throw new StartDateAfterEndDateException();
 	}
 
 	public LocalDate getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(LocalDate endDate) throws CreateDateAfterEndDateException {
+	public void setEndDate(LocalDate endDate) throws StartDateAfterEndDateException {
 		if(!this.startDate.isAfter(endDate)) {
 			this.endDate = endDate;			
 		}
 		else {
-			throw new CreateDateAfterEndDateException("The Start Date Need to be before the End Date");
+			throw new StartDateAfterEndDateException("The Start Date Need to be before the End Date");
 		}
 	}
 }
