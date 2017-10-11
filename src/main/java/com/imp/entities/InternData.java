@@ -1,4 +1,7 @@
-package entities;
+/*package com.imp.entities;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -102,4 +105,4 @@ public class InternData{
     public void setEffectiveAdmission(LocalDate effectiveAdmission) {
         this.effectiveAdmission = effectiveAdmission;
     }
-}
+}*/

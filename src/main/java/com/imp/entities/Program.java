@@ -2,17 +2,22 @@ package com.imp.entities;
 
 import java.time.LocalDate;
 
-import javax.persistence.Id;
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.SequenceGenerator;
 
+import com.imp.converters.LocalDateAttributeConverter;
 import com.imp.exceptions.StartDateAfterEndDateException;
 
-public class Program {
-		@Id
-		Integer id;
+@SequenceGenerator(name="SEQ", sequenceName="SEQ_PROGRAM", initialValue = 1, allocationSize = 1)
+@Entity
+public class Program extends BaseEntity {
 		String title;
 		String description;
 		String ownerBadge;
+		@Convert(converter = LocalDateAttributeConverter.class)
 		LocalDate startDate;
+		@Convert(converter = LocalDateAttributeConverter.class)
 		LocalDate endDate;
 		
 	public Program() {

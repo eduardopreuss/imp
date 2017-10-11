@@ -1,4 +1,4 @@
-package entities;
+/*package com.imp.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -7,7 +7,7 @@ import javax.persistence.Table;
 @Table(name = "Entities")
 public class AdministratorData{
 
-    public administratorData(){}
+    public AdministratorData(){}
 
     public boolean addRole(User user, String role){
         user.UserRole.SystemRole.setName(role);
@@ -18,4 +18,4 @@ public class AdministratorData{
             return false;
         }
     }
-}
+}*/

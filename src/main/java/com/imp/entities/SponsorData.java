@@ -1,4 +1,4 @@
-package entities;
+/*package com.imp.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -10,4 +10,4 @@ public class SponsorData{
 
     public SponsorData(){}
 
-}
+}*/
