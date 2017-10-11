@@ -65,7 +65,9 @@ public class Program extends BaseEntity {
 		if(!startDate.isAfter(this.endDate)) {
 			this.startDate = startDate;
 		}
-		throw new StartDateAfterEndDateException();
+		else {
+			throw new StartDateAfterEndDateException();			
+		}
 	}
 
 	public LocalDate getEndDate() {
