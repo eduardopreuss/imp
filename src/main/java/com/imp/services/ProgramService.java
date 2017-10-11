@@ -14,7 +14,7 @@ public class ProgramService{
 	
 	@Autowired
 	public void addProgram(String title, String description, String ownerBadge, LocalDate startDate, LocalDate endDate) throws CreateDateAfterEndDateException{
-		Program program = new Program(title, description, ownerBadge, startDate, endDate); 
+		Program program = new Program(title, description, ownerBadge, startDate, endDate); 	
 		programRepository.save(program);
 	}		
 }
