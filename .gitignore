@@ -2,6 +2,9 @@
 /build/
 !gradle/wrapper/gradle-wrapper.jar
 
+### JAVA ###
+.class
+
 ### STS ###
 .apt_generated
 .classpath
@@ -9,7 +12,7 @@
 .project
 .settings
 .springBeans
-bin/
+/bin/
 
 ### IntelliJ IDEA ###
 .idea
