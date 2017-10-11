@@ -33,20 +33,19 @@ public interface ProgramRepository extends CrudRepository<Program, Integer> {
 	public Program findById(int id);
 
 	/**
-	 * Finds a program by its official name.
+	 * Finds a program by its official title.
 	 * 
-	 * @param name Name of program to find.
+	 * @param title Title of program to find.
 	 * @return Program if found, null otherwise.
 	 */
-	public Program findByName(String name);
+	public Program findByTitle(String title);
 
 	/**
-	 * Finds a program by its alias.
+	 * Finds a program by its owner's badge.
 	 * 
-	 * @param alias Alias of program to find.
+	 * @param ownerBadge Owner's badge of program to find.
 	 * @return Program if found, null otherwise.
 	 */
-	public Program findByAlias(String alias);
 	public Program findByOwnerBadge(String ownerBadge);
 
 }
