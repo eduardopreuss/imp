@@ -2,10 +2,13 @@ package com.imp.entities;
 
 import java.time.LocalDate;
 
+import javax.persistence.Id;
+
 import com.imp.exceptions.CreateDateAfterEndDateException;
 
 public class Program {
-	
+		@Id
+		Integer id;
 		String title;
 		String description;
 		String ownerBadge;
