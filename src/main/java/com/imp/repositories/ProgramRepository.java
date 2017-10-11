@@ -46,6 +46,6 @@ public interface ProgramRepository extends CrudRepository<Program, Integer> {
 	 * @param ownerBadge Owner's badge of program to find.
 	 * @return Program if found, null otherwise.
 	 */
-	public Program findByAlias(String ownerBadge);
+	public Program findByOwnerBadge(String ownerBadge);
 
 }
