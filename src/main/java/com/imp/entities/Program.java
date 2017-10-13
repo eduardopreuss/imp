@@ -1,9 +1,12 @@
 package com.imp.entities;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 
 import com.imp.converters.LocalDateAttributeConverter;
@@ -19,7 +22,8 @@ public class Program extends BaseEntity {
 		LocalDate startDate;
 		@Convert(converter = LocalDateAttributeConverter.class)
 		LocalDate endDate;
-		
+		@ManyToMany
+		List<User> programUsers;
 	public Program() {
 		
 	}
@@ -31,6 +35,7 @@ public class Program extends BaseEntity {
 		this.ownerBadge = ownerBadge;
 		this.startDate = startDate;
 		this.setEndDate(endDate);
+		this.programUsers = new ArrayList<User>();
 	}
 
 	public String getTitle() {
@@ -81,5 +86,19 @@ public class Program extends BaseEntity {
 		else {
 			throw new StartDateAfterEndDateException("The Start Date Need to be before the End Date");
 		}
+	}
+
+	public List<User> getProgramUsers() {
+		return programUsers;
+	}
+
+	public void addProgramUsers(User newUser) {
+		if(this.programUsers.contains(newUser)) {
+			this.programUsers.remove(newUser);
+		}
+		this.programUsers.add(newUser);
+	}
+	public void eraseAllProgramUser() {
+		this.programUsers.clear();
 	}
 }
