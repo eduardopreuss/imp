@@ -8,6 +8,8 @@ package com.imp.services;
 import java.time.LocalDate;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.imp.entities.Program;
 import com.imp.exceptions.StartDateAfterEndDateException;
 import com.imp.repositories.ProgramRepository;
@@ -18,6 +20,7 @@ import com.imp.repositories.ProgramRepository;
  * 
  * @author IT Academy #3
  */
+@Component
 public class ProgramService {
 
 	private ProgramRepository programRepository;
