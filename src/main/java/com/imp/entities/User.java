@@ -1,5 +1,7 @@
 package com.imp.entities;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -40,11 +42,12 @@ public class User extends BaseEntity{
 	@Enumerated(EnumType.STRING)
 	private EmploymentStatus employmentStatus;
 	private boolean administrator;
+	private UserRole userRole;
 	
 	public User() {
 	}
 
-	public User(String badge, String password, String name, String email, LocalDate birthDate, String country, String state, String city, String address, String addressNumber, String phone, String zipCode, String managerBadge, String managerName, BigDecimal costCenter, EmploymentStatus employmentStatus, boolean administrator) {
+	public User(String badge, String password, String name, String email, LocalDate birthDate, String country, String state, String city, String address, String addressNumber, String phone, String zipCode, String managerBadge, String managerName, BigDecimal costCenter, EmploymentStatus employmentStatus, boolean administrator, UserRole userRole) {
 		this.badge = badge;
 		this.password = password;
 		this.name = name;
@@ -62,10 +65,13 @@ public class User extends BaseEntity{
 		this.costCenter = costCenter;
 		this.employmentStatus = employmentStatus;
 		this.administrator = administrator;
+		this.userRole = userRole;
 	}
 
+	public void setRole(String role) {
+		getUserRole().getSystemRole().setName(role);
+	}
 	
-
 	public String getBadge() {
 		return badge;
 	}
@@ -202,4 +208,14 @@ public class User extends BaseEntity{
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
 	}
+
+	public UserRole getUserRole() {
+		return userRole;
+	}
+
+	public void setUserRole(UserRole userRole) {
+		this.userRole = userRole;
+	}
+	
+	
 }
