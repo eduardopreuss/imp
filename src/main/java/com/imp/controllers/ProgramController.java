@@ -32,31 +32,15 @@ public class ProgramController {
 	
 	
 	@PostMapping("/api/createProgram")
-	public String createProgram(@RequestParam("title") String title, @RequestParam("description") String description, @RequestParam("ownerBadge") String ownerBadge, @RequestParam("startDate") LocalDate startDate, @RequestParam("endDate") LocalDate endDate, Model model) throws StartDateAfterEndDateException{
-		ps.addProgram(title, description, ownerBadge, startDate, endDate);
-		return null;
+	public String createProgram(@RequestParam("title") String title, @RequestParam("description") String description, @RequestParam("ownerBadge") String ownerBadge, @RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate) throws StartDateAfterEndDateException{
+		ps.addProgram(title, description, ownerBadge, LocalDate.parse(startDate), LocalDate.parse(endDate));
+		return "success";
 	}
 	
-	/*
-	@GetMapping("/createProgram")
-	public String createProgram(Model model) {
-		model.addAttribute("title", this.pc.getTitle());
-		model.addAttribute("description", this.pc.getDescription());
-		model.addAttribute("ownerBadge", this.pc.getOwnerBadge());
-		model.addAttribute("startDate", this.pc.getStartDate());
-		model.addAttribute("endDate", this.pc.getEndDate());
-	}
 	
-	*/
 	//==================================================================================================
 	
-	//search SHOW
-	@GetMapping("/apishow/Program")
-	public String showProgram(Model model) {
-		//model.addAttribute("Program", pc.showProgram());
-		return "showProgram";
-	}
-	
+
 	/**
 	 * Return an iterable with all Programs in data base
 	 * @param model
