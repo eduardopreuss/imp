@@ -2,7 +2,10 @@ package com.imp.entities;
 
 import static org.junit.Assert.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -14,6 +17,7 @@ import org.junit.runner.RunWith;
 import org.junit.Assert.*;
 import org.junit.rules.ExpectedException;
 
+import com.imp.enums.EmploymentStatus;
 import com.imp.exceptions.StartDateAfterEndDateException;
 
 
@@ -22,6 +26,18 @@ public class ProgramTest {
 	
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
+
+	User newUser = new User("1152","Abc123","felipe","xyz@hotmail.com",LocalDate.now(),"Brazil","RS","assa","Te","Brazil","RS","Te","Brazil","RS",BigDecimal.ONE,EmploymentStatus.Regular,true);
+
+//	@Rule
+//	public ExpectedException thrown = ExpectedException.none();
+	
+//	@Test
+//	public void starteDateBiggerThanEndDate() throws StartDateAfterEndDateException{
+//		p.setStartDate(LocalDate.of(2017,4,6));
+//		thrown.expect(StartDateAfterEndDateException.class);
+//		p.setEndDate(LocalDate.of(2017, 2, 5));
+//	}
 	
 	@Before
 	public void setUp() throws StartDateAfterEndDateException {
@@ -126,6 +142,31 @@ public class ProgramTest {
 		}catch (StartDateAfterEndDateException e2) {
 			fail();
 		}
+	}
+	
+	@Test 
+	public void test15() {
+		test.eraseAllProgramUser();
+		test.addProgramUsers(newUser);
+		List<User> x = new ArrayList<User>();
+		x.add(newUser);
+		assertEquals(x,test.getProgramUsers());
+	}
+	@Test 
+	public void test16() {
+		test.eraseAllProgramUser();
+		test.addProgramUsers(newUser);
+		List<User> x = new ArrayList<User>();
+		x.add(newUser);
+		test.addProgramUsers(newUser);
+		assertEquals(x,test.getProgramUsers());
+	}
+	
+	@Test 
+	public void test17() {
+		test.eraseAllProgramUser();
+		List<User> x = new ArrayList<User>();
+		assertEquals(x,test.getProgramUsers());
 	}
 }
  

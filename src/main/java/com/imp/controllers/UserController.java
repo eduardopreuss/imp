@@ -10,25 +10,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.imp.entities.User;
 import com.imp.repositories.UserRepository;
+import com.imp.services.UserService;
 
 @RestController
 public class UserController {
 
-	private UserRepository ur;
-	
-	@Autowired
-	public UserController(UserRepository ur) {
-		this.ur = ur;
-	}
-	
+	private UserService us;
+
+
 	@GetMapping("/user")
 	public String userForm(Model model, @RequestParam(value = "id", required = false) Long id) {
-			model.addAttribute("user", new User());
+		model.addAttribute("user", new User());
 		return "user";
 	}
-	
+
 	@PostMapping("/user")
-	public void addUser(@ModelAttribute User user) {
-		ur.save(user);
+	public void user(@ModelAttribute User user) {
+		us.saveUser(user);
 	}
 }
