@@ -33,6 +33,7 @@ public class User extends BaseEntity{
 	private String address;
 	private String addressNumber;
 	private String phone;
+	private String zipCode;
 	private String managerBadge;
 	private String managerName;
 	private BigDecimal costCenter;
@@ -43,11 +44,7 @@ public class User extends BaseEntity{
 	public User() {
 	}
 
-	
-	public User(String badge, String password, String name, String email, LocalDate birthDate, String country,
-			String state, String city, String address, String addressNumber, String phone, String managerBadge,
-			String managerName, BigDecimal costCenter, EmploymentStatus employmentStatus, boolean administrator) {
-		super();
+	public User(String badge, String password, String name, String email, LocalDate birthDate, String country, String state, String city, String address, String addressNumber, String phone, String zipCode, String managerBadge, String managerName, BigDecimal costCenter, EmploymentStatus employmentStatus, boolean administrator) {
 		this.badge = badge;
 		this.password = password;
 		this.name = name;
@@ -59,13 +56,13 @@ public class User extends BaseEntity{
 		this.address = address;
 		this.addressNumber = addressNumber;
 		this.phone = phone;
+		this.zipCode = zipCode;
 		this.managerBadge = managerBadge;
 		this.managerName = managerName;
 		this.costCenter = costCenter;
 		this.employmentStatus = employmentStatus;
 		this.administrator = administrator;
 	}
-
 
 	public String getBadge() {
 		return badge;
@@ -194,10 +191,13 @@ public class User extends BaseEntity{
 	public void setAdministrator(boolean administrator) {
 		this.administrator = administrator;
 	}
-	
-	
-	
 
-	
-		
+
+	public String getZipCode() {
+		return zipCode;
+	}
+
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
 }
