@@ -27,9 +27,9 @@ public class ProgramController {
 	
 	//==================================================================================================	
 	
-	@PostMapping("/api/createProgram")
-	public String createProgram(@RequestParam("title") String title, @RequestParam("description") String description, @RequestParam("ownerBadge") String ownerBadge, @RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate) throws StartDateAfterEndDateException{
-		ps.addProgram(title, description, ownerBadge, LocalDate.parse(startDate), LocalDate.parse(endDate));
+	@GetMapping("/api/createProgram")
+	public String createProgram(@RequestParam("title") String title, @RequestParam("description") String description, @RequestParam("ownerBadge") String ownerBadge, @RequestParam("startDate") String startDate) throws StartDateAfterEndDateException{
+		ps.addProgram(title, description, ownerBadge, LocalDate.parse(startDate));
 		return "success";
 	}
 	
@@ -53,11 +53,22 @@ public class ProgramController {
 	 * @return an iterable with all Programs in data base
 	 */
 	@GetMapping("/api/list/programs")
-	public Iterable<Program> listPrograms(Model model) {
+	public Iterable<Program> listPrograms() {
 		Iterable<Program> programList = ps.findAll();
 		return programList;
 	}
 	
+	@GetMapping("api/delete/program")
+	public String deleteProgram(Long id){
+		try {
+			this.ps.deleteProgram(id);
+		} catch (CannotDeleteProgramWithUserAssigned e) {
+			return e.getMessage();
+		} catch (CannotFindAProgramWithThatId e) {
+			return e.getMessage();
+		}
+		return "deleted";
+	}
 }
 
 
