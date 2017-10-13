@@ -3,32 +3,34 @@ package com.imp.entities;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
-
 import com.imp.converters.LocalDateAttributeConverter;
 import com.imp.exceptions.StartDateAfterEndDateException;
 
-@SequenceGenerator(name="SEQ", sequenceName="SEQ_PROGRAM", initialValue = 1, allocationSize = 1)
+
+@SequenceGenerator(name = "SEQ", sequenceName = "SEQ_PROGRAM", initialValue = 1, allocationSize = 1)
 @Entity
 public class Program extends BaseEntity {
-		String title;
-		String description;
-		String ownerBadge;
-		@Convert(converter = LocalDateAttributeConverter.class)
-		LocalDate startDate;
-		@Convert(converter = LocalDateAttributeConverter.class)
-		LocalDate endDate;
-		@ManyToMany
-		List<User> programUsers;
+
+	String title;
+	String description;
+	String ownerBadge;
+	@Convert(converter = LocalDateAttributeConverter.class)
+	LocalDate startDate;
+	@Convert(converter = LocalDateAttributeConverter.class)
+	LocalDate endDate;
+	@ManyToMany
+	List<User> programUsers;
+
 	public Program() {
-		
+
 	}
 
-	public Program(String title, String description, String ownerBadge, LocalDate startDate, LocalDate endDate) throws StartDateAfterEndDateException {
+	public Program(	String title, String description, String ownerBadge, LocalDate startDate,
+					LocalDate endDate) throws StartDateAfterEndDateException {
 		super();
 		this.title = title;
 		this.description = description;
@@ -67,11 +69,10 @@ public class Program extends BaseEntity {
 	}
 
 	public void setStartDate(LocalDate startDate) throws StartDateAfterEndDateException {
-		if(!startDate.isAfter(this.endDate)) {
+		if (!startDate.isAfter(this.endDate)) {
 			this.startDate = startDate;
-		}
-		else {
-			throw new StartDateAfterEndDateException();			
+		} else {
+			throw new StartDateAfterEndDateException("The Start Date Need to be before the End Date");
 		}
 	}
 
@@ -80,24 +81,24 @@ public class Program extends BaseEntity {
 	}
 
 	public void setEndDate(LocalDate endDate) throws StartDateAfterEndDateException {
-		if(!this.startDate.isAfter(endDate)) {
-			this.endDate = endDate;			
-		}
-		else {
+		if (!this.startDate.isAfter(endDate)) {
+			this.endDate = endDate;
+		} else {
 			throw new StartDateAfterEndDateException("The Start Date Need to be before the End Date");
 		}
 	}
 
-	public List<User> getProgramUsers(){
-		return programUsers;
+	public List<User> getProgramUsers() {
+		return this.programUsers;
 	}
 
 	public void addProgramUsers(User newUser) {
-		if(this.programUsers.contains(newUser)) {
-			this.programUsers.remove(newUser);
+		if (!this.programUsers.contains(newUser)) {
+			this.programUsers.add(newUser);
 		}
-		this.programUsers.add(newUser);
+
 	}
+
 	public void eraseAllProgramUser() {
 		this.programUsers.clear();
 	}
