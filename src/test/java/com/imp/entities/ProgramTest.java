@@ -152,6 +152,7 @@ public class ProgramTest {
 		x.add(newUser);
 		assertEquals(x,test.getProgramUsers());
 	}
+	
 	@Test 
 	public void test16() {
 		test.eraseAllProgramUser();
