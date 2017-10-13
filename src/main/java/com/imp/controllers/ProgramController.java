@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.imp.services.ProgramService;
+import com.imp.exceptions.ProgramNotFoundException;
 import com.imp.exceptions.StartDateAfterEndDateException;
 import com.imp.controllers.ProgramController;
 import com.imp.entities.Program;
@@ -30,11 +31,28 @@ public class ProgramController {
 		return "success";
 	}
 	
+	//search SHOW
+	@GetMapping("show/Program")
+	public String showProgram(Model model) {
+		//model.addAttribute("Program", pc.showProgram());
+		return "showProgram";
+	}	
 	
-	//==================================================================================================
+	//@GetMapping("api/updateProgram")
+	//public String updateProgram(Model model, @RequestParam("title") String title) {
+		//Program program = null;
+		/*
+		try {
+			program = this.ps.showProgram(title);
+		} catch (ProgramNotFoundException e) {
+			model.addAttribute("message", "Program not found");
+			return "programNotFound";
+		}
+	}
 	
+*/
 
-	/**
+	/*
 	 * Return an iterable with all Programs in data base
 	 * @param model
 	 * @return an iterable with all Programs in data base
