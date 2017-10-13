@@ -2,24 +2,29 @@ package com.imp.entities;
 
 import java.time.LocalDate;
 
-import javax.persistence.Id;
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.SequenceGenerator;
 
-import com.imp.exceptions.CreateDateAfterEndDateException;
+import com.imp.converters.LocalDateAttributeConverter;
+import com.imp.exceptions.StartDateAfterEndDateException;
 
-public class Program {
-		@Id
-		Integer id;
+@SequenceGenerator(name="SEQ", sequenceName="SEQ_PROGRAM", initialValue = 1, allocationSize = 1)
+@Entity
+public class Program extends BaseEntity {
 		String title;
 		String description;
 		String ownerBadge;
+		@Convert(converter = LocalDateAttributeConverter.class)
 		LocalDate startDate;
+		@Convert(converter = LocalDateAttributeConverter.class)
 		LocalDate endDate;
 		
 	public Program() {
 		
 	}
 
-	public Program(String title, String description, String ownerBadge, LocalDate startDate, LocalDate endDate) throws CreateDateAfterEndDateException {
+	public Program(String title, String description, String ownerBadge, LocalDate startDate, LocalDate endDate) throws StartDateAfterEndDateException {
 		super();
 		this.title = title;
 		this.description = description;
@@ -48,7 +53,7 @@ public class Program {
 		return ownerBadge;
 	}
 
-	public void setOwner(String ownerBadge) {
+	public void setOwnerBadge(String ownerBadge) {
 		this.ownerBadge = ownerBadge;
 	}
 
@@ -56,20 +61,25 @@ public class Program {
 		return startDate;
 	}
 
-	public void setStartDate(LocalDate startDate) {
-		this.startDate = startDate;
+	public void setStartDate(LocalDate startDate) throws StartDateAfterEndDateException {
+		if(!startDate.isAfter(this.endDate)) {
+			this.startDate = startDate;
+		}
+		else {
+			throw new StartDateAfterEndDateException();			
+		}
 	}
 
 	public LocalDate getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(LocalDate endDate) throws CreateDateAfterEndDateException {
+	public void setEndDate(LocalDate endDate) throws StartDateAfterEndDateException {
 		if(!this.startDate.isAfter(endDate)) {
 			this.endDate = endDate;			
 		}
 		else {
-			throw new CreateDateAfterEndDateException("The Start Date Need to be before the End Date");
+			throw new StartDateAfterEndDateException("The Start Date Need to be before the End Date");
 		}
 	}
 }
