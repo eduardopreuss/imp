@@ -8,6 +8,13 @@ import { routerTransition } from '../../router.animations';
     animations: [routerTransition()]
 })
 export class TablesComponent implements OnInit {
-    constructor() { }
+
+    tableHeader: string[];
+    thFontWeight: string;
+
+    constructor() { 
+        this.tableHeader = ['Title', 'Description', 'Owner', 'Start Date', 'End Date'];
+        
+    }
     ngOnInit() { }
 }
