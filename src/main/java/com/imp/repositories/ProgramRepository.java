@@ -15,7 +15,7 @@ import com.imp.entities.Program;
  * 
  * @author IT Academy #3
  */
-public interface ProgramRepository extends CrudRepository<Program, Integer> {
+public interface ProgramRepository extends CrudRepository<Program, Long> {
 
 	/**
 	 * Finds all programs.
@@ -30,7 +30,7 @@ public interface ProgramRepository extends CrudRepository<Program, Integer> {
 	 * @param id ID of program to find.
 	 * @return Program if found, null otherwise.
 	 */
-	public Program findById(int id);
+	public Program findById(Long id);
 
 	/**
 	 * Finds a program by its official title.
