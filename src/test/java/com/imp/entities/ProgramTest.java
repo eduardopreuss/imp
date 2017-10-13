@@ -23,7 +23,7 @@ import com.imp.exceptions.StartDateAfterEndDateException;
 
 public class ProgramTest {
 	Program test;
-	User newUser = new User("1152","Abc123","felipe","xyz@hotmail.com",LocalDate.now(),"Brazil","RS","Te","Brazil","RS","Te","Brazil","RS",BigDecimal.ONE,EmploymentStatus.Regular,true);
+	User newUser = new User("1152","Abc123","felipe","xyz@hotmail.com",LocalDate.now(),"Brazil","RS","assa","Te","Brazil","RS","Te","Brazil","RS",BigDecimal.ONE,EmploymentStatus.Regular,true);
 
 //	@Rule
 //	public ExpectedException thrown = ExpectedException.none();
