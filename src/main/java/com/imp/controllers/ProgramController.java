@@ -38,7 +38,7 @@ public class ProgramController {
 		return "showProgram";
 	}	
 	
-	//@GetMapping("api/updateProgram")
+	//@GetMapping("/api/updateProgram")
 	//public String updateProgram(Model model, @RequestParam("title") String title) {
 		//Program program = null;
 		/*

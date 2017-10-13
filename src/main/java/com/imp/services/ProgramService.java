@@ -111,4 +111,9 @@ public class ProgramService {
 		return this.programRepository.findByOwnerBadge(ownerBadge);
 	}
 
+	
+	public List<Program> findAllView() {
+		return this.programRepository.findAll();
+	}
+	
 }
