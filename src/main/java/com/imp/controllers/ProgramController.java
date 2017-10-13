@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.imp.services.ProgramService;
 import com.imp.exceptions.ProgramNotFoundException;
+import com.imp.exceptions.CannotDeleteProgramWithUserAssigned;
+import com.imp.exceptions.CannotFindAProgramWithThatId;
 import com.imp.exceptions.StartDateAfterEndDateException;
 import com.imp.controllers.ProgramController;
 import com.imp.entities.Program;
