@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.imp.entities.Program;
+import com.imp.exceptions.CannotDeleteProgramWithUserAssigned;
+import com.imp.exceptions.CannotFindAProgramWithThatId;
 import com.imp.exceptions.StartDateAfterEndDateException;
 import com.imp.repositories.ProgramRepository;
 
@@ -110,10 +112,30 @@ public class ProgramService {
 	public Program findByOwnerBadge(String ownerBadge) {
 		return this.programRepository.findByOwnerBadge(ownerBadge);
 	}
-
 	
 	public List<Program> findAllView() {
 		return this.programRepository.findAll();
 	}
 	
+	/**
+	 * Delete a program from dataBase, only if there is no users assigned to it
+	 * @param programID the program that will be deleted
+	 * @throws CannotDeleteProgramWithUserAssigned if there is at least one user assigned to it
+	 * @throws CannotFindAProgramWithThatId if there is no program with that id
+	 */
+	public void deleteProgram(int programID) throws CannotDeleteProgramWithUserAssigned, CannotFindAProgramWithThatId {
+		Program program = this.findById(programID);
+		if(program != null) {				
+			if(program.getProgramUsers().isEmpty()) {
+				this.programRepository.delete(programID);
+			}
+			else {
+				throw new CannotDeleteProgramWithUserAssigned("This Program has Person assigned, please delete this association before delete the Program");
+			}
+		}
+		else {
+			throw new CannotFindAProgramWithThatId("There is no program with that Id");
+		}
+	}
+
 }
