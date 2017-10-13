@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @EntityScan(basePackages = "com.imp.entities")
 @EnableJpaRepositories("com.imp.repositories")
-@ComponentScan({"com.imp.entities","com.imp.repositories","com.imp.controllers"})
+@ComponentScan({"com.imp.entities","com.imp.repositories","com.imp.controllers","com.imp.services","com.imp.enums"})
 @SpringBootApplication
 public class ImpApplication {
 
