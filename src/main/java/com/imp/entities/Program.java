@@ -88,7 +88,7 @@ public class Program extends BaseEntity {
 		}
 	}
 
-	public List<User> getProgramUsers() {
+	public List<User> getProgramUsers(){
 		return programUsers;
 	}
 
