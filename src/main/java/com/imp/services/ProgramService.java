@@ -50,6 +50,27 @@ public class ProgramService {
 		Program program = new Program(title, description, ownerBadge, startDate, endDate);
 		programRepository.save(program);
 	}
+	
+	//TO BE REVIEW
+	public void updateProgram(int id, String title, String description, String ownerBadge, LocalDate startDate,
+			LocalDate endDate) throws StartDateAfterEndDateException {
+		
+		Program program = null;
+		try {
+			program = this.programRepository.findById(id);
+		} catch(Exception e) {
+			return;
+		}
+		
+		program.setTitle(title);
+		program.setDescription(description);
+		program.setOwnerBadge(ownerBadge);
+		program.setStartDate(startDate);
+		program.setEndDate(endDate);
+		
+		programRepository.save(program);
+	}
+
 
 	/**
 	 * Finds all programs.

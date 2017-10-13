@@ -22,14 +22,7 @@ public class ProgramController {
 		this.ps = ps;
 	}
 	
-	//==================================================================================================
-	
-	//ADD
-	@GetMapping("/api/createProgram")
-	public String createProgram() {
-		return "createProgram";
-	}
-	
+	//==================================================================================================	
 	
 	@PostMapping("/api/createProgram")
 	public String createProgram(@RequestParam("title") String title, @RequestParam("description") String description, @RequestParam("ownerBadge") String ownerBadge, @RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate) throws StartDateAfterEndDateException{

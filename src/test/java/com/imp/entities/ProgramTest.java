@@ -20,15 +20,8 @@ import com.imp.exceptions.StartDateAfterEndDateException;
 public class ProgramTest {
 	Program test;
 	
-//	@Rule
-//	public ExpectedException thrown = ExpectedException.none();
-	
-//	@Test
-//	public void starteDateBiggerThanEndDate() throws StartDateAfterEndDateException{
-//		p.setStartDate(LocalDate.of(2017,4,6));
-//		thrown.expect(StartDateAfterEndDateException.class);
-//		p.setEndDate(LocalDate.of(2017, 2, 5));
-//	}
+	@Rule
+	public ExpectedException thrown = ExpectedException.none();
 	
 	@Before
 	public void setUp() throws StartDateAfterEndDateException {
@@ -88,45 +81,32 @@ public class ProgramTest {
 	
 	//Test if is possible change the endDate field throw the setEndDate method, with a endDate that happened before the startDate, if is possible fails
 	@Test
-	public void test9() {
-		try {
-			test.setEndDate(LocalDate.of(2, 8, 6));
-			fail();
-		}catch (StartDateAfterEndDateException e2) {
-			assertEquals(LocalDate.of(2017, 2, 5),test.getEndDate());
-		}
+	public void test9() throws StartDateAfterEndDateException{
+		thrown.expect(StartDateAfterEndDateException.class);
+		test.setEndDate(LocalDate.of(2017, 1, 1));
 	}
 	
 	//Test if is possible change the endDate field throw the setEndDate method, with a endDate that happened after the starDate, if possible success
 	@Test
-	public void test10() {
-		try {
+	public void test10() throws StartDateAfterEndDateException {
 			test.setEndDate(LocalDate.of(2017, 8, 6));
 			assertTrue((test.getEndDate().isAfter(test.getStartDate())));
-		}catch (StartDateAfterEndDateException e2) {
-			fail();
-		}
 	}
-	//Test if is possible change the startDate field throw the setStartDate method, with a startDate that happened after the endDate, if possible fails
+	
+	//Test if is possible change the startDate field throw the setStartDate method, with a startDate that happened after the endDate, if possible fails	
 	@Test
-	public void test11() {
-		try {
-			test.setStartDate(LocalDate.of(2017, 8, 7));
-			fail();
-		}catch (StartDateAfterEndDateException e2) {
-			assertEquals(LocalDate.of(2017, 1, 5),test.getStartDate());
-		}
+	public void test11() throws StartDateAfterEndDateException{
+		thrown.expect(StartDateAfterEndDateException.class);
+		test.setStartDate(LocalDate.of(2017, 3, 10));
 	}
+	
 	//Test if is possible change the startDate field throw the setStartDate method, with a startDate that happened before the endDate, if possible success
 	@Test
-	public void test12() {
-		try {
+	public void test12() throws StartDateAfterEndDateException {
 			test.setStartDate(LocalDate.of(2017, 1, 5));
 			assertTrue((test.getStartDate().isBefore(test.getEndDate())));
-		}catch (StartDateAfterEndDateException e2) {
-			fail();
-		}
 	}
+	
 	//Test if is possible change the startDate field throw the setStartDate method, with a startDate that happened in the same day of  the endDate, if possible success
 	@Test
 	public void test13() {
