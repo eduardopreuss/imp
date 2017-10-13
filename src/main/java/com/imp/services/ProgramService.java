@@ -54,7 +54,7 @@ public class ProgramService {
 	}
 	
 	//TO BE REVIEW
-	public void updateProgram(int id, String title, String description, String ownerBadge, LocalDate startDate,
+	public void updateProgram(Long id, String title, String description, String ownerBadge, LocalDate startDate,
 			LocalDate endDate) throws StartDateAfterEndDateException {
 		
 		Program program = null;
@@ -89,7 +89,7 @@ public class ProgramService {
 	 * @param id ID of program to find.
 	 * @return Program if found, null otherwise.
 	 */
-	public Program findById(int id) {
+	public Program findById(Long id) {
 		return this.programRepository.findById(id);
 	}
 
@@ -113,17 +113,13 @@ public class ProgramService {
 		return this.programRepository.findByOwnerBadge(ownerBadge);
 	}
 	
-	public List<Program> findAllView() {
-		return this.programRepository.findAll();
-	}
-	
 	/**
 	 * Delete a program from dataBase, only if there is no users assigned to it
 	 * @param programID the program that will be deleted
 	 * @throws CannotDeleteProgramWithUserAssigned if there is at least one user assigned to it
 	 * @throws CannotFindAProgramWithThatId if there is no program with that id
 	 */
-	public void deleteProgram(int programID) throws CannotDeleteProgramWithUserAssigned, CannotFindAProgramWithThatId {
+	public void deleteProgram(Long programID) throws CannotDeleteProgramWithUserAssigned, CannotFindAProgramWithThatId {
 		Program program = this.findById(programID);
 		if(program != null) {				
 			if(program.getProgramUsers().isEmpty()) {

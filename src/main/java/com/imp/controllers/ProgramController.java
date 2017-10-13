@@ -33,26 +33,19 @@ public class ProgramController {
 		return "success";
 	}
 	
+	//CONTROLLER PROGRAM DETAILS VIEW
+	@GetMapping("/api/list/programView")
+	public Program programView(@RequestParam("id") Long id) {
+			Program programDetailsView = ps.findById(id);
+			return programDetailsView;
+	}
+	
 	//search SHOW
 	@GetMapping("show/Program")
 	public String showProgram(Model model) {
 		//model.addAttribute("Program", pc.showProgram());
 		return "showProgram";
 	}	
-	
-	//@GetMapping("/api/updateProgram")
-	//public String updateProgram(Model model, @RequestParam("title") String title) {
-		//Program program = null;
-		/*
-		try {
-			program = this.ps.showProgram(title);
-		} catch (ProgramNotFoundException e) {
-			model.addAttribute("message", "Program not found");
-			return "programNotFound";
-		}
-	}
-	
-*/
 
 	/*
 	 * Return an iterable with all Programs in data base
