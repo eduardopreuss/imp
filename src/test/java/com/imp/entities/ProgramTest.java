@@ -41,7 +41,7 @@ public class ProgramTest {
 	
 	@Before
 	public void setUp() throws StartDateAfterEndDateException {
-		test = new Program("Title","This is a test", "ownerBadge", LocalDate.of(2017,1,5), LocalDate.of(2017, 2, 5));
+		test = new Program("Title","This is a test", "ownerBadge", LocalDate.of(2017,1,5));
 	}
 
 	//Test if the field Title is right on the constructor method
@@ -71,7 +71,7 @@ public class ProgramTest {
 	//Test if the field EndDate is right on the constructor method
 	@Test
 	public void test5() {
-		assertEquals(LocalDate.of(2017, 2, 5),test.getEndDate());
+		assertEquals(null,test.getEndDate());
 	}
 	//Test if is possible change the title field throw the setTitle method
 	
@@ -112,6 +112,7 @@ public class ProgramTest {
 	//Test if is possible change the startDate field throw the setStartDate method, with a startDate that happened after the endDate, if possible fails	
 	@Test
 	public void test11() throws StartDateAfterEndDateException{
+		test.setEndDate(LocalDate.of(2017,3,9));
 		thrown.expect(StartDateAfterEndDateException.class);
 		test.setStartDate(LocalDate.of(2017, 3, 10));
 	}
@@ -120,7 +121,7 @@ public class ProgramTest {
 	@Test
 	public void test12() throws StartDateAfterEndDateException {
 			test.setStartDate(LocalDate.of(2017, 1, 5));
-			assertTrue((test.getStartDate().isBefore(test.getEndDate())));
+			assertEquals(LocalDate.of(2017,1,5),(test.getStartDate()));
 	}
 	
 	//Test if is possible change the startDate field throw the setStartDate method, with a startDate that happened in the same day of  the endDate, if possible success
@@ -128,7 +129,7 @@ public class ProgramTest {
 	public void test13() {
 		try {
 			test.setStartDate(LocalDate.of(2017, 2, 5));
-			assertEquals(test.getEndDate(),test.getStartDate());
+			assertEquals(test.getStartDate(),LocalDate.of(2017,2,5));
 		}catch (StartDateAfterEndDateException e2) {
 			fail();
 		}
