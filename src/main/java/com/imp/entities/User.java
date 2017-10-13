@@ -64,6 +64,8 @@ public class User extends BaseEntity{
 		this.administrator = administrator;
 	}
 
+	
+
 	public String getBadge() {
 		return badge;
 	}
