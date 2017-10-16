@@ -3,23 +3,30 @@ package com.imp.entities;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.imp.converters.LocalDateAttributeConverter;
+
 @Entity
 @Table(name = "Interns")
 @SequenceGenerator(name="SEQ", sequenceName="SEQ_INT", initialValue = 1, allocationSize = 1)
-public class InternData extends BaseEntity{
+public class InternData extends UserData{
 
     private String document;
     private BigDecimal salary;
     private String phone;
     private String university;
     private String major;
+    @Convert(converter = LocalDateAttributeConverter.class)
     private LocalDate expectedGraduationDate;
+    @Convert(converter = LocalDateAttributeConverter.class)
     private LocalDate effectiveGraduationDate;
+    @Convert(converter = LocalDateAttributeConverter.class)
     private LocalDate expectedAdmission;
+    @Convert(converter = LocalDateAttributeConverter.class)
     private LocalDate effectiveAdmission;
 
     public InternData(){

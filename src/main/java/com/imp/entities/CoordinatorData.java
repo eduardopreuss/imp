@@ -7,7 +7,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Coordinators")
 @SequenceGenerator(name="SEQ", sequenceName="SEQ_COO", initialValue = 1, allocationSize = 1)
-public class CoordinatorData extends BaseEntity{
+public class CoordinatorData extends UserData{
 
     public CoordinatorData(){
         super();

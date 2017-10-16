@@ -4,6 +4,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Convert;
@@ -42,12 +43,18 @@ public class User extends BaseEntity{
 	@Enumerated(EnumType.STRING)
 	private EmploymentStatus employmentStatus;
 	private boolean administrator;
-	private UserRole userRole;
+	private List<UserRole> userRole;
+	private List<UserData> userData;
 	
 	public User() {
+		super();
 	}
 
-	public User(String badge, String password, String name, String email, LocalDate birthDate, String country, String state, String city, String address, String addressNumber, String phone, String zipCode, String managerBadge, String managerName, BigDecimal costCenter, EmploymentStatus employmentStatus, boolean administrator, UserRole userRole) {
+	public User(String badge, String password, String name, String email, LocalDate birthDate, String country,
+			String state, String city, String address, String addressNumber, String phone, String zipCode,
+			String managerBadge, String managerName, BigDecimal costCenter, EmploymentStatus employmentStatus,
+			boolean administrator, List<UserRole> userRole, List<UserData> userData) {
+		super();
 		this.badge = badge;
 		this.password = password;
 		this.name = name;
@@ -66,12 +73,35 @@ public class User extends BaseEntity{
 		this.employmentStatus = employmentStatus;
 		this.administrator = administrator;
 		this.userRole = userRole;
+		this.userData = userData;
 	}
 
-	public void setRole(String role) {
-		getUserRole().getSystemRole().setName(role);
+
+
+	public List<UserRole> getUserRole() {
+		return userRole;
 	}
-	
+
+
+
+	public void setUserRole(List<UserRole> userRole) {
+		this.userRole = userRole;
+	}
+
+
+
+	public List<UserData> getUserData() {
+		return userData;
+	}
+
+
+
+	public void setUserData(List<UserData> userData) {
+		this.userData = userData;
+	}
+
+
+
 	public String getBadge() {
 		return badge;
 	}
@@ -209,13 +239,7 @@ public class User extends BaseEntity{
 		this.zipCode = zipCode;
 	}
 
-	public UserRole getUserRole() {
-		return userRole;
-	}
 
-	public void setUserRole(UserRole userRole) {
-		this.userRole = userRole;
-	}
 	
 	
 }
