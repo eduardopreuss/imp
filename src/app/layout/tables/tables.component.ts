@@ -13,7 +13,7 @@ export class TablesComponent implements OnInit {
     thFontWeight: string;
     program: object[];
 
-    constructor() { 
+    constructor() {
         this.tableHeader = ['Title', 'Description', 'Owner', 'Start Date', 'End Date'];
 
             this.program = [{
