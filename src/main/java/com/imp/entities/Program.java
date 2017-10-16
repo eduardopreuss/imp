@@ -51,13 +51,13 @@ public class Program extends BaseEntity {
 	 * @param endDate the Program's end date
 	 * @throws StartDateAfterEndDateException if the end date is earlier than the start date
 	 */
-	public Program(	String title, String description, String ownerBadge, LocalDate startDate) throws StartDateAfterEndDateException {
+	public Program(	String title, String description, String ownerBadge, LocalDate startDate, LocalDate endDate) throws StartDateAfterEndDateException {
 		super();
 		this.title = title;
 		this.description = description;
 		this.ownerBadge = ownerBadge;
 		this.startDate = startDate;
-		this.endDate = null;
+		this.setEndDate(endDate);
 		this.programUsers = new ArrayList<User>();
 	}
 

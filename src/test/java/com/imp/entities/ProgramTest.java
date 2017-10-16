@@ -41,7 +41,7 @@ public class ProgramTest {
 	
 	@Before
 	public void setUp() throws StartDateAfterEndDateException {
-		test = new Program("Title","This is a test", "ownerBadge", LocalDate.of(2017,1,5));
+		test = new Program("Title","This is a test", "ownerBadge", LocalDate.of(2017,1,5), LocalDate.of(2017, 11, 5));
 	}
 
 	//Test if the field Title is right on the constructor method
@@ -71,7 +71,7 @@ public class ProgramTest {
 	//Test if the field EndDate is right on the constructor method
 	@Test
 	public void test5() {
-		assertEquals(null,test.getEndDate());
+		assertEquals( LocalDate.of(2017, 11, 5) , test.getEndDate());
 	}
 	//Test if is possible change the title field throw the setTitle method
 	
