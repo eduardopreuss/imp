@@ -28,8 +28,8 @@ public class ProgramController {
 	//==================================================================================================	
 	
 	@GetMapping("/api/createProgram")
-	public String createProgram(@RequestParam("title") String title, @RequestParam("description") String description, @RequestParam("ownerBadge") String ownerBadge, @RequestParam("startDate") String startDate) throws StartDateAfterEndDateException{
-		ps.addProgram(title, description, ownerBadge, LocalDate.parse(startDate));
+	public String createProgram(@RequestParam("title") String title, @RequestParam("description") String description, @RequestParam("ownerBadge") String ownerBadge, @RequestParam("startDate") String startDate,@RequestParam("endDate") String endDate) throws StartDateAfterEndDateException{
+		ps.addProgram(title, description, ownerBadge, LocalDate.parse(startDate), LocalDate.parse(endDate));
 		return "success";
 	}
 	
