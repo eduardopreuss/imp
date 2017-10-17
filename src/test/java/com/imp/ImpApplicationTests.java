@@ -1,16 +1,15 @@
 package com.imp;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
+@EntityScan(basePackages = "com.imp.entities")
+@EnableJpaRepositories("com.imp.repositories")
+@ComponentScan({"com.imp.entities","com.imp.repositories","com.imp.controllers","com.imp.services","com.imp.enums"})
+
 public class ImpApplicationTests {
 
-	@Test
-	public void contextLoads() {
-	}
+	
 
 }
