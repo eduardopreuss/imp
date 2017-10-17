@@ -74,16 +74,14 @@ public class ProgramController {
 	 * Deletes a program from data base
 	 * @param id of the program that will be deleted
 	 * @return deleted if the program has been delete or a mensage error
+	 * @throws CannotFindAProgramWithThatId 
+	 * @throws CannotDeleteProgramWithUserAssigned 
 	 */
 	@GetMapping("api/delete/program")
-	public String deleteProgram(Long id){
-		try {
-			this.ps.deleteProgram(id);
-		} catch (CannotDeleteProgramWithUserAssigned e) {
-			return e.getMessage();
-		} catch (CannotFindAProgramWithThatId e) {
-			return e.getMessage();
-		}
+	public String deleteProgram(Long id) throws CannotDeleteProgramWithUserAssigned, CannotFindAProgramWithThatId{
+		
+		this.ps.deleteProgram(id);
+		
 		return "deleted";
 	}
 }
