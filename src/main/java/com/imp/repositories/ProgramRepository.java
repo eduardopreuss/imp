@@ -1,5 +1,5 @@
 /**
- * Internship Management Program
+ * INTERNSHIP MANAGEMENT PROGRAM
  * 
  * @since Oct 10th, 2017
  */
@@ -25,20 +25,12 @@ public interface ProgramRepository extends CrudRepository<Program, Long> {
 	public List<Program> findAll();
 
 	/**
-	 * Finds a program by its id.
-	 * 
-	 * @param id ID of program to find.
-	 * @return Program if found, null otherwise.
-	 */
-	public Program findById(Long id);
-
-	/**
 	 * Finds a program by its official title.
 	 * 
 	 * @param title Title of program to find.
 	 * @return Program if found, null otherwise.
 	 */
-	public Program findByTitle(String title);
+	public Program findByTitleIgnoreCase(String title);
 
 	/**
 	 * Finds a program by its owner's badge.
@@ -47,6 +39,5 @@ public interface ProgramRepository extends CrudRepository<Program, Long> {
 	 * @return Program if found, null otherwise.
 	 */
 	public Program findByOwnerBadge(String ownerBadge);
-	
-	
+
 }

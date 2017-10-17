@@ -9,11 +9,9 @@ import java.time.LocalDate;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import com.imp.entities.Program;
 import com.imp.exceptions.CannotDeleteProgramWithUserAssigned;
 import com.imp.exceptions.CannotFindAProgramWithThatId;
-import com.imp.exceptions.ProgramNotFoundException;
 import com.imp.exceptions.StartDateAfterEndDateException;
 import com.imp.repositories.ProgramRepository;
 
@@ -48,43 +46,45 @@ public class ProgramService {
 	 * @param endDate Program's end date.
 	 * @throws StartDateAfterEndDateException
 	 */
-	public void addProgram(	String title, String description, String ownerBadge, LocalDate startDate, LocalDate endDate) throws StartDateAfterEndDateException {
-		Program program = new Program(title, description, ownerBadge, startDate,endDate);
+	public void addProgram(	String title, String description, String ownerBadge, LocalDate startDate,
+							LocalDate endDate) throws StartDateAfterEndDateException {
+		Program program = new Program(title, description, ownerBadge, startDate, endDate);
 		programRepository.save(program);
 	}
-	
+
 	/**
 	 * Update a program on data base with new values
+	 * 
 	 * @param id program's id
 	 * @param title new program's title
 	 * @param description new program's description
 	 * @param ownerBadge new program's owner badge
 	 * @param startDate new program's start date
 	 * @param endDate new program's end date
-	 * @throws StartDateAfterEndDateException if the new start date came before the end date
-	 * @throws CannotFindAProgramWithThatId if there is no program with that id on data base
+	 * @throws StartDateAfterEndDateException if the new start date came before the
+	 *             end date
+	 * @throws CannotFindAProgramWithThatId if there is no program with that id on
+	 *             data base
 	 */
-	public void updateProgram(Long id, String title, String description, String ownerBadge, LocalDate startDate,
-			LocalDate endDate) throws StartDateAfterEndDateException,CannotFindAProgramWithThatId {
-		
+	public void updateProgram(	Long id, String title, String description, String ownerBadge, LocalDate startDate,
+								LocalDate endDate) throws StartDateAfterEndDateException, CannotFindAProgramWithThatId {
+
 		Program program = null;
-		
-		program = this.programRepository.findById(id);
-		
-		if(program == null) {
+
+		program = this.programRepository.findOne(id);
+
+		if (program == null) {
 			throw new CannotFindAProgramWithThatId("There is no program with that Id");
 		}
-				
 
 		program.setTitle(title);
 		program.setDescription(description);
 		program.setOwnerBadge(ownerBadge);
 		program.setStartDate(startDate);
 		program.setEndDate(endDate);
-		
+
 		programRepository.save(program);
 	}
-
 
 	/**
 	 * Finds all programs.
@@ -102,7 +102,7 @@ public class ProgramService {
 	 * @return Program if found, null otherwise.
 	 */
 	public Program findById(Long id) {
-		return this.programRepository.findById(id);
+		return this.programRepository.findOne(id);
 	}
 
 	/**
@@ -112,7 +112,7 @@ public class ProgramService {
 	 * @return Program if found, null otherwise.
 	 */
 	public Program findByTitle(String title) {
-		return this.programRepository.findByTitle(title);
+		return this.programRepository.findByTitleIgnoreCase(title);
 	}
 
 	/**
@@ -124,24 +124,24 @@ public class ProgramService {
 	public Program findByOwnerBadge(String ownerBadge) {
 		return this.programRepository.findByOwnerBadge(ownerBadge);
 	}
-	
+
 	/**
 	 * Delete a program from dataBase, only if there is no users assigned to it
+	 * 
 	 * @param programID the program that will be deleted
-	 * @throws CannotDeleteProgramWithUserAssigned if there is at least one user assigned to it
+	 * @throws CannotDeleteProgramWithUserAssigned if there is at least one user
+	 *             assigned to it
 	 * @throws CannotFindAProgramWithThatId if there is no program with that id
 	 */
 	public void deleteProgram(Long programID) throws CannotDeleteProgramWithUserAssigned, CannotFindAProgramWithThatId {
 		Program program = this.findById(programID);
-		if(program != null) {				
-			if(program.getProgramUsers().isEmpty()) {
+		if (program != null) {
+			if (program.getProgramUsers().isEmpty()) {
 				this.programRepository.delete(programID);
-			}
-			else {
+			} else {
 				throw new CannotDeleteProgramWithUserAssigned("This Program has Person assigned, please delete this association before delete the Program");
 			}
-		}
-		else {
+		} else {
 			throw new CannotFindAProgramWithThatId("There is no program with that Id");
 		}
 	}
