@@ -4,6 +4,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -12,9 +13,14 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
+
+import org.hibernate.annotations.ManyToAny;
 
 import com.imp.converters.LocalDateAttributeConverter;
 import com.imp.enums.EmploymentStatus;
@@ -43,8 +49,10 @@ public class User extends BaseEntity{
 	@Enumerated(EnumType.STRING)
 	private EmploymentStatus employmentStatus;
 	private boolean administrator;
-	private List<UserRole> userRole;
-	private List<UserData> userData;
+	
+	private ArrayList<UserRole> userRole;
+	
+	private ArrayList<UserData> userData;
 	
 	public User() {
 		super();
@@ -53,7 +61,7 @@ public class User extends BaseEntity{
 	public User(String badge, String password, String name, String email, LocalDate birthDate, String country,
 			String state, String city, String address, String addressNumber, String phone, String zipCode,
 			String managerBadge, String managerName, BigDecimal costCenter, EmploymentStatus employmentStatus,
-			boolean administrator, List<UserRole> userRole, List<UserData> userData) {
+			boolean administrator, ArrayList<UserRole> userRole, ArrayList<UserData> userData) {
 		super();
 		this.badge = badge;
 		this.password = password;
@@ -84,7 +92,7 @@ public class User extends BaseEntity{
 
 
 
-	public void setUserRole(List<UserRole> userRole) {
+	public void setUserRole(ArrayList<UserRole> userRole) {
 		this.userRole = userRole;
 	}
 
@@ -96,7 +104,7 @@ public class User extends BaseEntity{
 
 
 
-	public void setUserData(List<UserData> userData) {
+	public void setUserData(ArrayList<UserData> userData) {
 		this.userData = userData;
 	}
 

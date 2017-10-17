@@ -40,6 +40,7 @@ public class Program extends BaseEntity {
 	 */
 	public Program() {
 		super();
+		this.programUsers = new ArrayList<User>();
 	}
 
 	/**

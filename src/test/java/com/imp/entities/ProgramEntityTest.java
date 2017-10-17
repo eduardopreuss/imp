@@ -7,38 +7,28 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.Assert.*;
 import org.junit.rules.ExpectedException;
 
 import com.imp.enums.EmploymentStatus;
 import com.imp.exceptions.StartDateAfterEndDateException;
 
-
-public class ProgramTest {
-	Program test;
+public class ProgramEntityTest {
+	private Program test;
+	private User newUser;
 	
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
 
-	User newUser = new User("1152","Abc123","felipe","xyz@hotmail.com",LocalDate.now(),"Brazil","RS","assa","Te","Brazil","RS","Te","Brazil","RS",BigDecimal.ONE,EmploymentStatus.Regular,true, new UserRole());
-
-//	@Rule
-//	public ExpectedException thrown = ExpectedException.none();
-	
-//	@Test
-//	public void starteDateBiggerThanEndDate() throws StartDateAfterEndDateException{
-//		p.setStartDate(LocalDate.of(2017,4,6));
-//		thrown.expect(StartDateAfterEndDateException.class);
-//		p.setEndDate(LocalDate.of(2017, 2, 5));
-//	}
-	
+	public ProgramEntityTest(){
+		ArrayList<UserRole> roleList = new ArrayList<>();
+		ArrayList<UserData> dataList = new ArrayList<>();
+		roleList.add(new UserRole());
+		dataList.add(new AdministratorData());
+		newUser = new User("1152","Abc123","felipe","xyz@hotmail.com",LocalDate.now(),"Brazil","RS","assa","Te","Brazil","RS","Te","Brazil","RS",BigDecimal.ONE,EmploymentStatus.Regular,true,roleList,dataList);
+	}
 	@Before
 	public void setUp() throws StartDateAfterEndDateException {
 		test = new Program("Title","This is a test", "ownerBadge", LocalDate.of(2017,1,5), LocalDate.of(2017, 11, 5));
@@ -170,5 +160,5 @@ public class ProgramTest {
 		List<User> x = new ArrayList<User>();
 		assertEquals(x,test.getProgramUsers());
 	}
+
 }
- 
