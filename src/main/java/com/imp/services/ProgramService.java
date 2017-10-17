@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import com.imp.entities.Program;
 import com.imp.exceptions.CannotDeleteProgramWithUserAssigned;
 import com.imp.exceptions.CannotFindAProgramWithThatId;
+import com.imp.exceptions.ProgramNotFoundException;
 import com.imp.exceptions.StartDateAfterEndDateException;
 import com.imp.repositories.ProgramRepository;
 
@@ -52,16 +53,28 @@ public class ProgramService {
 		programRepository.save(program);
 	}
 	
-	//TO BE REVIEW
+	/**
+	 * Update a program on data base with new values
+	 * @param id program's id
+	 * @param title new program's title
+	 * @param description new program's description
+	 * @param ownerBadge new program's owner badge
+	 * @param startDate new program's start date
+	 * @param endDate new program's end date
+	 * @throws StartDateAfterEndDateException if the new start date came before the end date
+	 * @throws CannotFindAProgramWithThatId if there is no program with that id on data base
+	 */
 	public void updateProgram(Long id, String title, String description, String ownerBadge, LocalDate startDate,
-			LocalDate endDate) throws StartDateAfterEndDateException {
+			LocalDate endDate) throws StartDateAfterEndDateException,CannotFindAProgramWithThatId {
 		
 		Program program = null;
-		try {
-			program = this.programRepository.findById(id);
-		} catch(Exception e) {
-			return;
+		
+		program = this.programRepository.findById(id);
+		
+		if(program == null) {
+			throw new CannotFindAProgramWithThatId("There is no program with that Id");
 		}
+				
 
 		program.setTitle(title);
 		program.setDescription(description);
