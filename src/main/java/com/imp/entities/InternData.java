@@ -1,28 +1,39 @@
-/*package com.imp.entities;
+package com.imp.entities;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.imp.converters.LocalDateAttributeConverter;
 
 @Entity
 @Table(name = "Interns")
-
-public class InternData{
+@SequenceGenerator(name="SEQ", sequenceName="SEQ_INT", initialValue = 1, allocationSize = 1)
+public class InternData extends UserData{
 
     private String document;
     private BigDecimal salary;
     private String phone;
     private String university;
     private String major;
+    @Convert(converter = LocalDateAttributeConverter.class)
     private LocalDate expectedGraduationDate;
+    @Convert(converter = LocalDateAttributeConverter.class)
     private LocalDate effectiveGraduationDate;
+    @Convert(converter = LocalDateAttributeConverter.class)
     private LocalDate expectedAdmission;
+    @Convert(converter = LocalDateAttributeConverter.class)
     private LocalDate effectiveAdmission;
 
-    public InternData(){}
+    public InternData(){
+        super();
+    }
     public InternData(String document, BigDecimal salary, String phone, String university, String major, LocalDate expectedGraduationDate, LocalDate effectiveGraduationDate, LocalDate expectedAdmission, LocalDate effectiveAdmission){
+        super();
         this.document = document;
         this.salary = salary;
         this.phone = phone;
@@ -105,4 +116,4 @@ public class InternData{
     public void setEffectiveAdmission(LocalDate effectiveAdmission) {
         this.effectiveAdmission = effectiveAdmission;
     }
-}*/
+}

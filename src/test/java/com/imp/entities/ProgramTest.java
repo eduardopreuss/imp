@@ -27,7 +27,7 @@ public class ProgramTest {
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
 
-	User newUser = new User("1152","Abc123","felipe","xyz@hotmail.com",LocalDate.now(),"Brazil","RS","assa","Te","Brazil","RS","Te","Brazil","RS",BigDecimal.ONE,EmploymentStatus.Regular,true);
+	User newUser = new User("1152","Abc123","felipe","xyz@hotmail.com",LocalDate.now(),"Brazil","RS","assa","Te","Brazil","RS","Te","Brazil","RS",BigDecimal.ONE,EmploymentStatus.Regular,true, new UserRole());
 
 //	@Rule
 //	public ExpectedException thrown = ExpectedException.none();
