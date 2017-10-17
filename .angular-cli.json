@@ -21,13 +21,11 @@
             "prefix": "app",
             "styles": [
                 "../node_modules/font-awesome/css/font-awesome.css",
-                "styles/app.scss",
-                "../node_modules/datatables.net-dt/css/jquery.dataTables.css"
+                "styles/app.scss"
             ],
             "scripts": [
                 "../node_modules/chart.js/dist/Chart.js",
-                "../node_modules/webpack-dev-server/client/web_modules/jquery/jquery-1.8.1.js",
-                "../node_modules/datatables.net/js/jquery.dataTables.js"
+                "../node_modules/webpack-dev-server/client/web_modules/jquery/jquery-1.8.1.js"
             ],
             "environmentSource": "environments/environment.ts",
             "environments": {
