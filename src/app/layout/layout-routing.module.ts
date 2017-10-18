@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout.component';
+import {UserComponent} from "./user/user.component";
 
 const routes: Routes = [
     {
@@ -15,6 +16,7 @@ const routes: Routes = [
             { path: 'components', loadChildren: './bs-component/bs-component.module#BsComponentModule' },
             { path: 'blank-page', loadChildren: './blank-page/blank-page.module#BlankPageModule' },
             { path: 'program-list', loadChildren: './program-list/program-list/program-list.module#ProgramListModule'},
+            { path: 'user', loadChildren:'./user/user.module#UserModule'},
         ]
     }
 ];
