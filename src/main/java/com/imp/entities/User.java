@@ -19,8 +19,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.ManyToAny;
+import org.hibernate.validator.constraints.Email;
 
 import com.imp.converters.LocalDateAttributeConverter;
 import com.imp.enums.EmploymentStatus;
@@ -30,22 +33,42 @@ import com.imp.enums.EmploymentStatus;
 @Table(name ="Users")
 public class User extends BaseEntity{
 	
-	private String badge;
-	private String password;
-	private String name;
+	@Size (min=7)
+    private String badge;
+    @Size (min=8, max=13)
+	private String password;   
+	@NotNull
+    @Size (min=6, max=50)
+    private String name;
+    @NotNull
+    @Email
 	private String email;
+    @NotNull
 	@Convert(converter = LocalDateAttributeConverter.class)
 	private LocalDate birthDate;
+    @NotNull
+    @Size (min=4, max=50)
 	private String country;
+    @NotNull
+    @Size (min=4, max=50)
 	private String state;
+    @NotNull
+    @Size (min=4, max=50)
 	private String city;
+    @NotNull
+    @Size (min=4, max=100)
 	private String address;
 	private String addressNumber;
+    @NotNull
+    @Size (min=8, max=15)
 	private String phone;
-	private String zipCode;
+    @Size (min=4, max=10) 
+    private String zipCode;
+    @Size (min=7)
 	private String managerBadge;
-	private String managerName;
-	private BigDecimal costCenter;
+    @Size (min=6)
+	private String managerName; 
+	private String costCenter;
 	@Enumerated(EnumType.STRING)
 	private EmploymentStatus employmentStatus;
 	private boolean administrator;
@@ -60,7 +83,7 @@ public class User extends BaseEntity{
 
 	public User(String badge, String password, String name, String email, LocalDate birthDate, String country,
 			String state, String city, String address, String addressNumber, String phone, String zipCode,
-			String managerBadge, String managerName, BigDecimal costCenter, EmploymentStatus employmentStatus,
+			String managerBadge, String managerName, String costCenter, EmploymentStatus employmentStatus,
 			boolean administrator, ArrayList<UserRole> userRole, ArrayList<UserData> userData) {
 		super();
 		this.badge = badge;
@@ -214,11 +237,11 @@ public class User extends BaseEntity{
 		this.managerName = managerName;
 	}
 
-	public BigDecimal getCostCenter() {
+	public String getCostCenter() {
 		return costCenter;
 	}
 
-	public void setCostCenter(BigDecimal costCenter) {
+	public void setCostCenter(String costCenter) {
 		this.costCenter = costCenter;
 	}
 
