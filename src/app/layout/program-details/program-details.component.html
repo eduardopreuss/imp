@@ -1,0 +1,68 @@
+<div [@routerTransition]>
+    <app-page-header [heading]="'Program Details'" [icon]="'fa-edit'"></app-page-header>
+
+    <form role="form">
+		<div class="form-group">
+			<label class="control-label" for="programTitle">Program Title</label>
+			<input type="text" id="programTitle" name="programTitle" class="form-control" placeholder="Program test" disabled>
+		</div>
+		
+		<div class="form-group">
+			<label class="control-label" for="programDescription">Program Description</label>
+			<textarea class="form-control" id="programDescription" rows="6" cols = "20" placeholder="Description of the test program." disabled></textarea>
+		</div>
+		
+		<!-- Auto-complete this \/ with the name of the coordinator that's using the page, but can also put other coordinator name. -->
+		<div class="form-group">
+			<label class="control-label" for="programOwner">Program Owner</label>
+			<input type="text" id="programOwner" name="programOwner" class="form-control" placeholder="Alvaro Souza Pereira da Silva" disabled>
+		</div>
+		
+		<!-- Auto-complete with the current date, but can be edited -->
+		<div class="form-group">
+			<label class="control-label" for="startDate">Start Date</label>
+			<input type="text" class="form-control" id="startDate" name="startDate" placeholder="08/17/2017" disabled>
+		</div>
+		
+		<div class="form-group">
+			<label class="control-label" for="endDate">End Date</label>
+			<input type="text" class="form-control" id="endDate" name="endDate" placeholder="08/17/2019" disabled>
+		</div>
+		
+		
+		<div class="form-group">
+			<label class="control-label" for="users">Program Users</label>
+			<select multiple class="form-control" id="users">
+			      <option>Alvaro Souza Pereira da Silva</option>
+			      <option>Renan Kummer de Jesus</option>
+			      <option>Iohanna Campos</option>
+			      <option>Anderson Muniz</option>
+			      <option>Joao Pedro Cruz</option>
+			      <option>Felipe Leivas Machado</option>
+		    </select>
+		</div>
+	</form>
+	
+	<button class="btn btn-primary">Add User to Program</button>
+	
+    <button class="btn btn-warning" [routerLink]="['/edit-program']" [routerLinkActive]="['router-link-active']">Edit Program</button>
+    
+    
+    <ng-template #delete let-c="close" let-d="dismiss">
+	  <div class="modal-header">
+	    <h4 class="modal-title">Delete Program</h4>
+	    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+	      <span aria-hidden="true">&times;</span>
+	    </button>
+	  </div>
+	  <div class="modal-body">
+	    <p>Are you sure you want to <b>delete</b> this Program?</p>
+	  </div>
+	  <div class="modal-footer">
+	    <button type="button" class="btn btn-primary" (click)="c('Close click')">Yes</button>
+	  	<button type="button" class="btn btn-danger" (click)="c('Close click')">No</button>
+	  </div>
+	</ng-template>
+
+	<button class="btn btn-danger" (click)="open(delete)">Delete Program</button>
+</div>

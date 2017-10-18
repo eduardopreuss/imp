@@ -5,30 +5,35 @@
 		
 	<div class="form-group">
 		<label class="control-label" for="programTitle">Program Title</label>
-		<input type="text" id="programTitle" name="programTitle" class="form-control" placeholder="Enter the Program Title">
+		<input type="text" id="programTitle" name="programTitle" class="form-control" placeholder="Program test">
 	</div>
 	
 	<div class="form-group">
 		<label class="control-label" for="programDescription">Program Description</label>
-		<textarea class="form-control" id="programDescription" rows="6" cols = "20" placeholder="Enter Program Description"></textarea>
+		<textarea class="form-control" id="programDescription" rows="6" cols = "20" placeholder="Description of the test program."></textarea>
 	</div>
 	
 	<!-- Auto-complete this \/ with the name of the coordinator that's using the page, but can also put other coordinator name. -->
 	<div class="form-group">
 		<label class="control-label" for="programOwner">Program Owner</label>
-		<input type="text" id="programOwner" name="programOwner" class="form-control" placeholder="Enter the name of the Owner of this Program">
+		<input type="text" id="programOwner" name="programOwner" class="form-control" placeholder="Alvaro Souza Pereira da Silva">
 	</div>
 	
-	<!-- Auto-complete with the current date, but can be edited -->
-	<div class="form-group">
-		<label class="control-label" for="startDate">Start Date</label>
-		<input type="text" class="form-control" id="startDate" name="startDate" placeholder="MM/DD/YYYY">
-	</div>
 	
-	<div class="form-group">
-		<label class="control-label" for="endDate">End Date</label>
-		<input type="text" class="form-control" id="endDate" name="endDate" placeholder="MM/DD/YYYY">
-	</div>
+	<div class="container form-group" style="display: flex; flex-direction: row; justify-content: flex-start; align-items: flex-start; margin-left: 0px;">
+			<div class="form-group" style="margin-right: 20px;">
+				<label class="control-label" for="startDate">Start Date</label>
+				<div>
+					<ngb-datepicker #dp [(ngModel)]="startDate" (navigate)="date = $event.next" id="startDate" name="startDate"></ngb-datepicker>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label" for="endDate">End Date</label>
+				<div>
+					<ngb-datepicker #dp [(ngModel)]="endDate" (navigate)="date = $event.next" id="startDate" name="startDate"></ngb-datepicker>
+				</div>
+			</div>
+		</div>
 	
 	</form>
     <!-- /.row -->
