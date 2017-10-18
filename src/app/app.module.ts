@@ -8,7 +8,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
-import { ListUserComponent } from './list-user/list-user.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: Http) {
     // for development
@@ -17,8 +17,7 @@ export function HttpLoaderFactory(http: Http) {
 }
 @NgModule({
     declarations: [
-        AppComponent,
-        ListUserComponent
+        AppComponent
     ],
     imports: [
         BrowserModule,
@@ -32,7 +31,8 @@ export function HttpLoaderFactory(http: Http) {
                 useFactory: HttpLoaderFactory,
                 deps: [Http]
             }
-        })
+        }),
+        NgbModule.forRoot()
     ],
     providers: [AuthGuard],
     bootstrap: [AppComponent]
