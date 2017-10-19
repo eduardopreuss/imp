@@ -25,12 +25,12 @@
 				<div>
 					<ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next" id="startDate" name="startDate"></ngb-datepicker>
 				</div>
-				<button class="btn btn-sm btn-outline-primary" (click)="selectToday()">Select Today</button>
 			</div>
+			
 			<div class="form-group">
 				<label class="control-label" for="endDate">End Date</label>
 				<div>
-					<ngb-datepicker #dp [(ngModel)]="model2" (navigate)="date = $event.next" id="startDate" name="endDate"></ngb-datepicker>
+					<ngb-datepicker #dp [(ngModel)]="model2" (navigate)="date = $event.next" id="endDate" name="endDate"></ngb-datepicker>
 				</div>
 			</div>
 		</div>
