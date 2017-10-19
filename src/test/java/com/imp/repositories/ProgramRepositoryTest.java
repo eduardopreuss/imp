@@ -18,6 +18,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.imp.application.ImpApplication;
 import com.imp.entities.Program;
+import com.imp.exceptions.DescriptionMustHaveLessThan400CharactersException;
 import com.imp.exceptions.StartDateAfterEndDateException;
 
 
@@ -43,8 +44,9 @@ public class ProgramRepositoryTest {
 	 * Constructs a ProgramRepositoryTest and its programs.
 	 * 
 	 * @throws StartDateAfterEndDateException
+	 * @throws DescriptionMustHaveLessThan400CharactersException 
 	 */
-	public ProgramRepositoryTest() throws StartDateAfterEndDateException {
+	public ProgramRepositoryTest() throws StartDateAfterEndDateException, DescriptionMustHaveLessThan400CharactersException {
 		p1 = new Program(	"P1 title", "P1 description", "1111111", LocalDate.of(2014, Month.OCTOBER, 16),
 							LocalDate.now());
 		p2 = new Program(	"P2 title", "P2 description", "2222222", LocalDate.of(2015, Month.OCTOBER, 16),

@@ -35,6 +35,7 @@ import com.imp.entities.Program;
 import com.imp.enums.EmploymentStatus;
 import com.imp.exceptions.CannotDeleteProgramWithUserAssigned;
 import com.imp.exceptions.CannotFindAProgramWithThatId;
+import com.imp.exceptions.DescriptionMustHaveLessThan400CharactersException;
 import com.imp.exceptions.ProgramNotFoundException;
 import com.imp.exceptions.StartDateAfterEndDateException;
 import com.imp.repositories.ProgramRepository;
@@ -52,7 +53,7 @@ public class ProgramServiceTest {
 	public ExpectedException thrown = ExpectedException.none();
     
     @Before
-    public void before() throws StartDateAfterEndDateException {
+    public void before() throws StartDateAfterEndDateException, DescriptionMustHaveLessThan400CharactersException {
     	test = new Program("Eu", "Sou", "171", LocalDate.of(2016, 5, 8), LocalDate.now());
     }
     /**
@@ -101,9 +102,10 @@ public class ProgramServiceTest {
     /**
      * @throws StartDateAfterEndDateException
      * See if a program with invalid data can be added to the data base, this test is suppose to fail
+     * @throws DescriptionMustHaveLessThan400CharactersException 
      */
     @Test
-    public void test1() throws StartDateAfterEndDateException {
+    public void test1() throws StartDateAfterEndDateException, DescriptionMustHaveLessThan400CharactersException {
     	thrown.expect(StartDateAfterEndDateException.class);
     	Program p = new Program("Eu", "sou", "172", LocalDate.of(2016, 5, 8), LocalDate.of(2016, 5, 7));
     	ps.addProgram(p);
@@ -117,9 +119,10 @@ public class ProgramServiceTest {
      * @throws CannotDeleteProgramWithUserAssigned
      * @throws CannotFindAProgramWithThatId
      * @throws ProgramNotFoundException 
+     * @throws DescriptionMustHaveLessThan400CharactersException 
      */
     @Test
-    public void test2() throws StartDateAfterEndDateException, CannotDeleteProgramWithUserAssigned, CannotFindAProgramWithThatId, ProgramNotFoundException {
+    public void test2() throws StartDateAfterEndDateException, CannotDeleteProgramWithUserAssigned, CannotFindAProgramWithThatId, ProgramNotFoundException, DescriptionMustHaveLessThan400CharactersException {
     	Program program = new Program("Eu", "sou", "172", LocalDate.of(2016, 5, 8), LocalDate.of(2016, 5, 9));
     	ps.addProgram(program);
     	Program p = ps.findByTitle("Eu");
@@ -139,9 +142,10 @@ public class ProgramServiceTest {
      * @throws CannotDeleteProgramWithUserAssigned
      * @throws CannotFindAProgramWithThatId
      * @throws ProgramNotFoundException
+     * @throws DescriptionMustHaveLessThan400CharactersException 
      */
     @Test
-    public void testUpdateProgramWithWrongId() throws StartDateAfterEndDateException, CannotDeleteProgramWithUserAssigned, CannotFindAProgramWithThatId, ProgramNotFoundException {
+    public void testUpdateProgramWithWrongId() throws StartDateAfterEndDateException, CannotDeleteProgramWithUserAssigned, CannotFindAProgramWithThatId, ProgramNotFoundException, DescriptionMustHaveLessThan400CharactersException {
     	Program program = new Program("Eu", "sou", "172", LocalDate.of(2016, 5, 8), LocalDate.of(2016, 5, 9));
     	ps.addProgram(program);
     	Program p = ps.findByTitle("Eu");
@@ -154,9 +158,10 @@ public class ProgramServiceTest {
     /**
      * Test if findAll method works
      * @throws StartDateAfterEndDateException
+     * @throws DescriptionMustHaveLessThan400CharactersException 
      */
     @Test
-    public void test3() throws StartDateAfterEndDateException {
+    public void test3() throws StartDateAfterEndDateException, DescriptionMustHaveLessThan400CharactersException {
     	Program p1 = new Program("IT", "INTERN PROGRAM", "115486483", LocalDate.of(2018, 5, 20), LocalDate.of(2020, 5, 20));
     	Program p2 = new Program("IT2", "INTERN PROGRAM", "115486483", LocalDate.of(2020, 5, 20), LocalDate.of(2022, 5, 20));
     	Program p3 = new Program("IT3", "INTERN PROGRAM", "115486483", LocalDate.of(2022, 5, 20), LocalDate.of(2024, 5, 20));

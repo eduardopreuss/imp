@@ -13,6 +13,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import com.imp.enums.EmploymentStatus;
+import com.imp.exceptions.DescriptionMustHaveLessThan400CharactersException;
 import com.imp.exceptions.StartDateAfterEndDateException;
 
 public class ProgramEntityTest {
@@ -30,7 +31,7 @@ public class ProgramEntityTest {
 		newUser = new User("1152","Abc123","felipe","xyz@hotmail.com",LocalDate.now(),"Brazil","RS","assa","Te","Brazil","RS","Te","Brazil","RS","Te",EmploymentStatus.Regular,true,roleList,dataList);
 	}
 	@Before
-	public void setUp() throws StartDateAfterEndDateException {
+	public void setUp() throws StartDateAfterEndDateException, DescriptionMustHaveLessThan400CharactersException {
 		test = new Program("Title","This is a test", "ownerBadge", LocalDate.of(2017,1,5), LocalDate.of(2017, 11, 5));
 	}
 
@@ -73,7 +74,7 @@ public class ProgramEntityTest {
 	
 	//Test if is possible change the description field throw the setDescription method
 	@Test
-	public void test7() {
+	public void test7() throws DescriptionMustHaveLessThan400CharactersException {
 		test.setDescription("New Description");
 		assertEquals("New Description",test.getDescription());
 	}

@@ -20,6 +20,7 @@ import com.imp.application.ImpApplication;
 import com.imp.entities.Program;
 import com.imp.exceptions.CannotDeleteProgramWithUserAssigned;
 import com.imp.exceptions.CannotFindAProgramWithThatId;
+import com.imp.exceptions.DescriptionMustHaveLessThan400CharactersException;
 import com.imp.exceptions.StartDateAfterEndDateException;
 
 @RunWith(SpringRunner.class)
@@ -34,16 +35,17 @@ public class ProgramControllerTest {
 	public ExpectedException thrown = ExpectedException.none();
 	
 	@Before
-    public void before() throws StartDateAfterEndDateException {
+    public void before() throws StartDateAfterEndDateException, DescriptionMustHaveLessThan400CharactersException {
     	test = new Program("Title", "Description", "11035489", LocalDate.of(2017, 12, 5), LocalDate.of(2019,12,5));
     }
 	
 	/**
 	 * Test if a program can be create on data base
 	 * @throws StartDateAfterEndDateException if the program start date is after the program end date
+	 * @throws DescriptionMustHaveLessThan400CharactersException 
 	 */
 	@Test
-	public void testCreateProgram() throws StartDateAfterEndDateException {
+	public void testCreateProgram() throws StartDateAfterEndDateException, DescriptionMustHaveLessThan400CharactersException {
 		Program program = new Program("Title", "Description", "11035489", LocalDate.of(2017, 12, 05), LocalDate.of(2019, 12, 05));
 		String result = pc.createProgram(program);
 		assertEquals("success",result);
@@ -52,9 +54,10 @@ public class ProgramControllerTest {
 	/**
 	 * Test if the programView method return a instance of Program with that id
 	 * @throws CannotFindAProgramWithThatId if there is no program with that id
+	 * @throws DescriptionMustHaveLessThan400CharactersException 
 	 */
 	@Test
-	public void testProgramView() throws  CannotFindAProgramWithThatId {
+	public void testProgramView() throws  CannotFindAProgramWithThatId, DescriptionMustHaveLessThan400CharactersException {
 		try {
 			Program program = new Program("Title", "Description", "11035489", LocalDate.of(2017, 12, 05), LocalDate.of(2019, 12, 05));
 			pc.createProgram(program);
@@ -91,9 +94,10 @@ public class ProgramControllerTest {
 	 * @throws StartDateAfterEndDateException
 	 * @throws CannotDeleteProgramWithUserAssigned
 	 * @throws CannotFindAProgramWithThatId
+	 * @throws DescriptionMustHaveLessThan400CharactersException 
 	 */
 	@Test
-	public void testDeleteProgram() throws StartDateAfterEndDateException, CannotDeleteProgramWithUserAssigned, CannotFindAProgramWithThatId {
+	public void testDeleteProgram() throws StartDateAfterEndDateException, CannotDeleteProgramWithUserAssigned, CannotFindAProgramWithThatId, DescriptionMustHaveLessThan400CharactersException {
 		Program program = new Program("Title", "Description", "11035489", LocalDate.of(2017, 12, 05), LocalDate.of(2019, 12, 05));
 		pc.createProgram(program);
 		Long programId = 0l;

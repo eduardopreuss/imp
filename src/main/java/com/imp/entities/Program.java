@@ -3,14 +3,19 @@ package com.imp.entities;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 
+import org.springframework.beans.factory.annotation.Required;
+
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.imp.converters.LocalDateAttributeConverter;
 import com.imp.deserializer.LocalDateDeserializer;
+import com.imp.exceptions.DescriptionMustHaveLessThan400CharactersException;
 import com.imp.exceptions.StartDateAfterEndDateException;
 
 
@@ -27,11 +32,16 @@ import com.imp.exceptions.StartDateAfterEndDateException;
 @Entity
 public class Program extends BaseEntity {
 
+	@Column(nullable = false)
 	String title;
+	@Column(nullable = false)
 	String description;
+	@Column(nullable = false)
 	String ownerBadge;
+	@Column(nullable = false)
 	@Convert(converter = LocalDateAttributeConverter.class)
 	LocalDate startDate;
+	@Column(nullable = false)
 	@Convert(converter = LocalDateAttributeConverter.class)
 	LocalDate endDate;
 	@ManyToMany
@@ -54,11 +64,12 @@ public class Program extends BaseEntity {
 	 * @param startDate the Program's start date
 	 * @param endDate the Program's end date
 	 * @throws StartDateAfterEndDateException if the end date is earlier than the start date
+	 * @throws DescriptionMustHaveLessThan400CharactersException if the description has more than 400 characters
 	 */
-	public Program(	String title, String description, String ownerBadge, LocalDate startDate, LocalDate endDate) throws StartDateAfterEndDateException {
+	public Program(	String title, String description, String ownerBadge, LocalDate startDate, LocalDate endDate) throws StartDateAfterEndDateException, DescriptionMustHaveLessThan400CharactersException {
 		super();
 		this.title = title;
-		this.description = description;
+		this.setDescription(description);
 		this.ownerBadge = ownerBadge;
 		this.startDate = startDate;
 		this.setEndDate(endDate);
@@ -91,9 +102,13 @@ public class Program extends BaseEntity {
 	/**
 	 * Set a new description to the Program
 	 * @param description the Program's new description
+	 * @throws DescriptionMustHaveLessThan400CharactersException if the description has more than 400 characters
 	 */
-	public void setDescription(String description) {
-		this.description = description;
+	public void setDescription(String description) throws DescriptionMustHaveLessThan400CharactersException {
+		if(description.length() <= 400) {
+			this.description = description;			
+		}
+		else throw new DescriptionMustHaveLessThan400CharactersException("The desctiption must have less than 400 characters");
 	}
 
 	/**

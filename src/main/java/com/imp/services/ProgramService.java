@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import com.imp.entities.Program;
 import com.imp.exceptions.CannotDeleteProgramWithUserAssigned;
 import com.imp.exceptions.CannotFindAProgramWithThatId;
+import com.imp.exceptions.DescriptionMustHaveLessThan400CharactersException;
 import com.imp.exceptions.StartDateAfterEndDateException;
 import com.imp.repositories.ProgramRepository;
 
@@ -63,9 +64,10 @@ public class ProgramService {
 	 *             end date
 	 * @throws CannotFindAProgramWithThatId if there is no program with that id on
 	 *             data base
+	 * @throws DescriptionMustHaveLessThan400CharactersException  if the description has more than 400 characters
 	 */
 	public void updateProgram(	Long id, String title, String description, String ownerBadge, LocalDate startDate,
-								LocalDate endDate) throws StartDateAfterEndDateException, CannotFindAProgramWithThatId {
+								LocalDate endDate) throws StartDateAfterEndDateException, CannotFindAProgramWithThatId, DescriptionMustHaveLessThan400CharactersException {
 
 		Program program = null;
 
