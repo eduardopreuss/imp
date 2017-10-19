@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
-
+import {Http, RequestOptions} from "@angular/http";
+import {Headers} from '@angular/http';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 const now = new Date();
@@ -12,12 +13,23 @@ const now = new Date();
     animations: [routerTransition()]
 })
 export class CreateProgramComponent implements OnInit {
-    model: NgbDateStruct;
-    model2: NgbDateStruct;
-    date: {year: number, month: number};
-    selectToday() {
-      this.model = {year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate()};
+   
+
+
+  constructor(private http: Http, private options: RequestOptions) {
+
+      let headers = new Headers({ 'Content-Type': 'application/json' });
+      this.options = new RequestOptions({ headers: headers });
+
+  }
+
+    onSubmit(form){
+
+        this.http.post('api/createProgram', JSON.stringify(form.value), this.options)
+            .map( res => res.json())
+            .subscribe();
     }
-    constructor() { }
-    ngOnInit() {}
+
+  ngOnInit() {
+  }
 }
