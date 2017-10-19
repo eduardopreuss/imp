@@ -46,9 +46,7 @@ public class ProgramService {
 	 * @param endDate Program's end date.
 	 * @throws StartDateAfterEndDateException
 	 */
-	public void addProgram(	String title, String description, String ownerBadge, LocalDate startDate,
-							LocalDate endDate) throws StartDateAfterEndDateException {
-		Program program = new Program(title, description, ownerBadge, startDate, endDate);
+	public void addProgram(Program program) {
 		programRepository.save(program);
 	}
 

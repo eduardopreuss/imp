@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.imp.services.ProgramService;
@@ -37,9 +38,9 @@ public class ProgramController {
 	 * @return success if the program has been created on data base
 	 * @throws StartDateAfterEndDateException if the start date is after the end date
 	 */
-	@GetMapping("/api/createProgram")
-	public String createProgram(@RequestParam("title") String title, @RequestParam("description") String description, @RequestParam("ownerBadge") String ownerBadge, @RequestParam("startDate") String startDate,@RequestParam("endDate") String endDate) throws StartDateAfterEndDateException{
-		ps.addProgram(title, description, ownerBadge, LocalDate.parse(startDate), LocalDate.parse(endDate));
+	@PostMapping("/api/createProgram")
+	public String createProgram(@RequestBody Program program) throws StartDateAfterEndDateException{
+		ps.addProgram(program);
 		return "success";
 	}
 	

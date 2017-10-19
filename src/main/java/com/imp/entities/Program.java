@@ -7,7 +7,10 @@ import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.imp.converters.LocalDateAttributeConverter;
+import com.imp.deserializer.LocalDateDeserializer;
 import com.imp.exceptions.StartDateAfterEndDateException;
 
 
@@ -120,6 +123,7 @@ public class Program extends BaseEntity {
 	 * @param startDate new date of program
 	 * @throws StartDateAfterEndDateException if the new start date is after the end date
 	 */
+	@JsonDeserialize(using = LocalDateDeserializer.class)
 	public void setStartDate(LocalDate startDate) throws StartDateAfterEndDateException {
 		if(this.endDate != null) {
 			if (!startDate.isAfter(this.endDate)) {
@@ -145,6 +149,7 @@ public class Program extends BaseEntity {
 	 * @param endDate
 	 * @throws StartDateAfterEndDateException
 	 */
+	@JsonDeserialize(using = LocalDateDeserializer.class)
 	public void setEndDate(LocalDate endDate) throws StartDateAfterEndDateException {
 		if (!this.startDate.isAfter(endDate)) {
 			this.endDate = endDate;

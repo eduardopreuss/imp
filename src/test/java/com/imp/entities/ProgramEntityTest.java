@@ -27,7 +27,7 @@ public class ProgramEntityTest {
 		ArrayList<UserData> dataList = new ArrayList<>();
 		roleList.add(new UserRole());
 		dataList.add(new AdministratorData());
-		newUser = new User("1152","Abc123","felipe","xyz@hotmail.com",LocalDate.now(),"Brazil","RS","assa","Te","Brazil","RS","Te","Brazil","RS",BigDecimal.ONE,EmploymentStatus.Regular,true,roleList,dataList);
+		newUser = new User("1152","Abc123","felipe","xyz@hotmail.com",LocalDate.now(),"Brazil","RS","assa","Te","Brazil","RS","Te","Brazil","RS","Te",EmploymentStatus.Regular,true,roleList,dataList);
 	}
 	@Before
 	public void setUp() throws StartDateAfterEndDateException {

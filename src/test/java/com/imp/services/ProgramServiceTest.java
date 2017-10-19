@@ -62,7 +62,9 @@ public class ProgramServiceTest {
      */
     @Test
     public void myTest() throws Exception {
-    	ps.addProgram("Eu", "Sou", "171", LocalDate.of(2016, 5, 8), LocalDate.now());
+		Program program = new Program("Eu", "Sou", "171", LocalDate.of(2016, 5, 8), LocalDate.now());
+
+    	ps.addProgram(program);
 	    Program p2 = ps.findByTitle("Eu");
 	    assertEquals(test.getDescription(), p2.getDescription());
 	    assertEquals(test.getEndDate(), p2.getEndDate());
@@ -103,7 +105,8 @@ public class ProgramServiceTest {
     @Test
     public void test1() throws StartDateAfterEndDateException {
     	thrown.expect(StartDateAfterEndDateException.class);
-    	ps.addProgram("Eu", "sou", "172", LocalDate.of(2016, 5, 8), LocalDate.of(2016, 5, 7));
+    	Program p = new Program("Eu", "sou", "172", LocalDate.of(2016, 5, 8), LocalDate.of(2016, 5, 7));
+    	ps.addProgram(p);
     	
     	
     }
@@ -117,7 +120,8 @@ public class ProgramServiceTest {
      */
     @Test
     public void test2() throws StartDateAfterEndDateException, CannotDeleteProgramWithUserAssigned, CannotFindAProgramWithThatId, ProgramNotFoundException {
-    	ps.addProgram("Eu", "sou", "172", LocalDate.of(2016, 5, 8), LocalDate.of(2016, 5, 9));
+    	Program program = new Program("Eu", "sou", "172", LocalDate.of(2016, 5, 8), LocalDate.of(2016, 5, 9));
+    	ps.addProgram(program);
     	Program p = ps.findByTitle("Eu");
     	Long idP = p.getId();
     	ps.deleteProgram(idP);
@@ -138,7 +142,8 @@ public class ProgramServiceTest {
      */
     @Test
     public void testUpdateProgramWithWrongId() throws StartDateAfterEndDateException, CannotDeleteProgramWithUserAssigned, CannotFindAProgramWithThatId, ProgramNotFoundException {
-    	ps.addProgram("Eu", "sou", "172", LocalDate.of(2016, 5, 8), LocalDate.of(2016, 5, 9));
+    	Program program = new Program("Eu", "sou", "172", LocalDate.of(2016, 5, 8), LocalDate.of(2016, 5, 9));
+    	ps.addProgram(program);
     	Program p = ps.findByTitle("Eu");
     	Long idP = p.getId();
     	ps.deleteProgram(idP);
@@ -156,9 +161,9 @@ public class ProgramServiceTest {
     	Program p2 = new Program("IT2", "INTERN PROGRAM", "115486483", LocalDate.of(2020, 5, 20), LocalDate.of(2022, 5, 20));
     	Program p3 = new Program("IT3", "INTERN PROGRAM", "115486483", LocalDate.of(2022, 5, 20), LocalDate.of(2024, 5, 20));
 
-    	ps.addProgram("IT", "INTERN PROGRAM", "115486483", LocalDate.of(2018, 5, 20), LocalDate.of(2020, 5, 20));
-    	ps.addProgram("IT2", "INTERN PROGRAM", "115486483", LocalDate.of(2020, 5, 20), LocalDate.of(2022, 5, 20));
-    	ps.addProgram("IT3", "INTERN PROGRAM", "115486483", LocalDate.of(2022, 5, 20), LocalDate.of(2024, 5, 20));
+    	ps.addProgram(p1);
+    	ps.addProgram(p2);
+    	ps.addProgram(p3);
 
     	List <Program> allPrograms = ps.findAll();
     	Boolean p1Found = false;

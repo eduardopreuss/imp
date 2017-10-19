@@ -44,7 +44,8 @@ public class ProgramControllerTest {
 	 */
 	@Test
 	public void testCreateProgram() throws StartDateAfterEndDateException {
-		String result = pc.createProgram("Title", "Description", "11035489", "2017-12-05", "2019-12-05");
+		Program program = new Program("Title", "Description", "11035489", LocalDate.of(2017, 12, 05), LocalDate.of(2019, 12, 05));
+		String result = pc.createProgram(program);
 		assertEquals("success",result);
 	}
 
@@ -55,7 +56,8 @@ public class ProgramControllerTest {
 	@Test
 	public void testProgramView() throws  CannotFindAProgramWithThatId {
 		try {
-			pc.createProgram("Title", "Description", "11035489", "2017-12-05", "2019-12-05");
+			Program program = new Program("Title", "Description", "11035489", LocalDate.of(2017, 12, 05), LocalDate.of(2019, 12, 05));
+			pc.createProgram(program);
 		} catch (StartDateAfterEndDateException e) {
 			fail();
 		}
@@ -92,7 +94,8 @@ public class ProgramControllerTest {
 	 */
 	@Test
 	public void testDeleteProgram() throws StartDateAfterEndDateException, CannotDeleteProgramWithUserAssigned, CannotFindAProgramWithThatId {
-		pc.createProgram("Title", "Description", "11035489", "2017-12-05", "2019-12-05");
+		Program program = new Program("Title", "Description", "11035489", LocalDate.of(2017, 12, 05), LocalDate.of(2019, 12, 05));
+		pc.createProgram(program);
 		Long programId = 0l;
 		for(Program p :pc.listPrograms()) {
 			if(p.getTitle().equals("Title") && p.getDescription().equals("Description")) {
