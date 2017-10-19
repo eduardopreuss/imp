@@ -5,14 +5,16 @@
 <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
 
-    <app-page-header [heading]="'Tables'" [icon]="'fa-table'"></app-page-header>
+    <app-page-header [heading]="'Program List'" [icon]="'fa-table'"></app-page-header>
     <div class="row">
+
+        
         <div class="col col-lg-12">
             <div class="card mb-12">
                 <div class="card-header">
                     <i class="fa fa-table"></i> Program List
 
-                    <!--pagination filter-->
+                   
                     <div class="dataTables_length" id="dataTable_lenth">
                         <label class="my-2">Show </label>
                         <select name="dataTable_length" aria-controls="data-table" class="form-control form-control-sm" style="width: 5%; display: inline-block">
@@ -24,7 +26,7 @@
 
                         entries
 
-                        <!--search input-->
+                        
                         <div class="col-sm-3" style="display:inline-block; float:right">
                                 <div id="dataTable_filter" class="dataTables_filter">
                                     <label>Search
@@ -44,33 +46,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th class="th-item">Dell IT Academy</th>
-                                    <th class="th-item">Program developed for the purpose of hiring new interns</th>
-                                    <th class="th-item"><a href="#">Muller, Nelson</a></th>
-                                    <th class="th-item">08/01/2017</th>
-                                    <th class="th-item">01/31/2018</th>
-                                </tr>
-                                <tr>
-                                    <th class="th-item">U@Dell</th>
-                                    <th class="th-item">Talent Aquisition Program</th>
-                                    <th class="th-item"><a href="#">Fernandes, Gabriela</a></th>
-                                    <th class="th-item">01/01/2017</th>
-                                    <th class="th-item">12/31/2017</th>
-                                </tr>
-                                <tr>
-                                    <th class="th-item">Tests Program</th>
-                                    <th class="th-item">If you die, you get poor and ... LOSE!!!</th>
-                                    <th class="th-item"><a href="#">Callegari, Daniel</a></th>
-                                    <th class="th-item">01/01/2017</th>
-                                    <th class="th-item">12/31/2017</th>
-                                </tr>
-                                <tr>
-                                    <th class="th-item">DevTeamCoop</th>
-                                    <th class="th-item">Softare development program created for undergraduate students!!!</th>
-                                    <th class="th-item"><a href="#">Dell, Michael</a></th>
-                                    <th class="th-item">01/01/2017</th>
-                                    <th class="th-item">12/31/2017</th>
+                                <tr *ngFor="let program of program">
+                                    <td>{{ program.title }}</td>
+                                    <td>{{ program.description }}</td>
+                                    <td><a href="#">{{ program.owner }}</a></td>
+                                    <td>{{ program.startDate }}</td>
+                                    <td>{{ program.endDate }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -80,5 +61,4 @@
             </div>
         </div>
     </div>
-</div>
 
