@@ -1,0 +1,38 @@
+<div [@routerTransition]>
+    <app-page-header [heading]="'Give Admin Rights to User'" [icon]="'fa-edit'"></app-page-header>
+
+    <form role="form">
+		
+		<div class="form-group">
+		    <label for="users" class="control-label">Select User</label>
+		    <select class="form-control" id="users">
+		      <option>Alvaro Souza Pereira da Silva</option>
+		      <option>Renan Kummer de Jesus</option>
+		      <option>Iohanna Campos</option>
+		      <option>Anderson Muniz</option>
+		      <option>Joao Pedro Cruz</option>
+		      <option>Felipe Leivas Machado</option>
+		    </select>
+		</div>
+	
+	</form>
+    
+    <ng-template #userAdmin let-c="close" let-d="dismiss">
+	  <div class="modal-header">
+	    <h4 class="modal-title">Admin Rights</h4>
+	    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+	      <span aria-hidden="true">&times;</span>
+	    </button>
+	  </div>
+	  <div class="modal-body">
+	    <p>Are you sure you want to give this user admin rights?</p>
+	  </div>
+	  <div class="modal-footer">
+	    <button type="button" class="btn btn-primary" (click)="c('Close click')">Yes</button>
+	  	<button type="button" class="btn btn-danger" (click)="c('Close click')">No</button>
+	  </div>
+	</ng-template>
+
+	<button class="btn btn-primary" (click)="open(userAdmin)">Give Admin Rights</button>
+    
+</div>

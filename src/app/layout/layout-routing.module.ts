@@ -12,6 +12,8 @@ const routes: Routes = [
             { path: 'edit-program', loadChildren: './edit-program/edit-program.module#EditProgramModule' },
             { path: 'program-list', loadChildren: './program-list/program-list.module#ProgramListModule' },
             { path: 'program-details', loadChildren: './program-details/program-details.module#ProgramDetailsModule' },
+            { path: 'user-program', loadChildren: './user-program/user-program.module#UserProgramModule' },
+            { path: 'admin-rights', loadChildren: './admin-rights/admin-rights.module#AdminRightsModule' },
             { path: 'bs-element', loadChildren: './bs-element/bs-element.module#BsElementModule' },
             { path: 'grid', loadChildren: './grid/grid.module#GridModule' },
             { path: 'components', loadChildren: './bs-component/bs-component.module#BsComponentModule' },
