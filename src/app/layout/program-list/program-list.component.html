@@ -1,22 +1,26 @@
+<div [@routerTransition]>
+    <app-page-header [heading]="'Program List'" [icon]="'fa-edit'"></app-page-header>
 
-<!--programs table-->
-<div class="card mb-3">
-  <div class="card-header">
-    <i class="fa-fa table"></i> Programs List
-  </div>
-  <div class="card-body">
-    <div class="table-responsive">
-      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Owner</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-          </tr>
-        </thead>
-      </table>
+    <div class="row">
+        <div class="container my-5">
+            <div class="col-md-12">
+                <table class="table table-responsive table-bordered" id="programList">
+                    <thead>
+                        <th *ngFor="let header of tableHeader">{{ header }}</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let program of program">
+                            <td>{{ program.title }}</td>
+                            <td>{{ program.description }}</td>
+                            <td><a href="#" class="people-link">{{ program.owner }}</a></td>
+                            <td>{{ program.startDate }}</td>
+                            <td>{{ program.endDate }}</td>
+                            <td class="fa fa-trash-o pull-right"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-  </div>
+        
 </div>

@@ -5,11 +5,14 @@ import { TablesComponent } from './tables.component';
 import { TablesRoutingModule } from './tables-routing.module';
 import { PageHeaderModule } from './../../shared';
 
+import { DataTablesModule} from 'angular-datatables';
+
 @NgModule({
     imports: [
         CommonModule,
         TablesRoutingModule,
-        PageHeaderModule
+        PageHeaderModule,
+        DataTablesModule
     ],
     declarations: [TablesComponent]
 })

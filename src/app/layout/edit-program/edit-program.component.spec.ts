@@ -2,11 +2,11 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { PageHeaderModule } from './../../shared';
-import { ProgramListComponent } from './program-list.component';
+import { EditProgramComponent } from './edit-program.component';
 
-describe('ProgramListComponent', () => {
-  let component: ProgramList;
-  let fixture: ComponentFixture<ProgramList>;
+describe('EditProgramComponent', () => {
+  let component: EditProgramComponent;
+  let fixture: ComponentFixture<EditProgramComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -14,13 +14,13 @@ describe('ProgramListComponent', () => {
       RouterTestingModule,
       PageHeaderModule,
     ],
-      declarations: [ ProgramList ]
+      declarations: [ EditProgramComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProgramList);
+    fixture = TestBed.createComponent(EditProgramComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
