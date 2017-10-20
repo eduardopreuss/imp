@@ -9,9 +9,14 @@
     <div class="row">
         <div class="col-lg-6">
 
-                <fieldset class="form-group">
+                <fieldset class="form-group"
+                          [class.has-error]="!messageBagde.valid && messageBagde.touched">
                     <label>Badge</label>
-                    <input type="text" class="form-control" placeholder="Enter Badge" ngModel name="badge">
+                    <input type="text" class="form-control" placeholder="Enter Badge" ngModel name="badge" pattern="[a-zA-Z0-9]+" #messageBagde="ngModel">
+                    <div *ngIf="!messageBagde.valid && messageBagde.touched"
+                        class="alert alert-danger" role="alert">
+                        Use alphanumeric characters
+                    </div>
                 </fieldset>
 
                 <fieldset class="form-group">
@@ -24,77 +29,139 @@
                     <input type="password" class="form-control" placeholder="Confirm Password" ngModel name="password2">
                 </fieldset>
 
-                <fieldset class="form-group">
+                <fieldset class="form-group"
+                          [class.has-error]="!messageName.valid && messageName.touched">
                     <label>Full Name</label>
-                    <input type="text" class="form-control" placeholder="Enter Full Name" ngModel name="name">
+                    <input type="text" class="form-control" placeholder="Enter Full Name" ngModel name="name" required pattern="^[a-zA-Z ]+$" #messageName="ngModel">
+                    <div *ngIf="!messageName.valid && messageName.touched"
+                         class="alert alert-danger" role="alert">
+                        Full name required
+                    </div>
                 </fieldset>
 
-                <fieldset class="form-group">
+                <fieldset class="form-group"
+                          [class.has-error]="!messageEmail.valid && messageEmail.touched">
                     <label>Email</label>
-                    <input type="email" class="form-control" placeholder="Enter Email" ngModel name="email">
+                    <input type="email" class="form-control" placeholder="Enter Email" ngModel name="email" required
+                    pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+                           #messageEmail="ngModel">
+                    <div *ngIf="!messageEmail.valid && messageEmail.touched"
+                         class="alert alert-danger" role="alert">
+                        Enter with a valid email
+                    </div>
                 </fieldset>
 
                 <fieldset class="form-group">
                     <label>Birthdate</label>
-                    <input type="date" class="form-control" placeholder="Enter Birthdate">
+                    <input type="date" class="form-control" placeholder="Enter Birthdate" max="2005-12-31" >
                 </fieldset>
 
-                <fieldset class="form-group">
+                <fieldset class="form-group"
+                          [class.has-error]="!messagePhone.valid && messagePhone.touched">
                     <label>Phone</label>
-                    <input type="text" class="form-control" placeholder="Enter Phone" ngModel name="phone">
+                    <input type="text" class="form-control" placeholder="Enter Phone" ngModel name="phone" required pattern="[0-9]+" #messagePhone="ngModel">
+                    <div *ngIf="!messagePhone.valid && messagePhone.touched"
+                         class="alert alert-danger" role="alert">
+                        Enter with a valid phone number
+                    </div>
                 </fieldset>
 
-                <fieldset class="form-group">
+                <fieldset class="form-group"
+                          [class.has-error]="!messageCost.valid && messageCost.touched">
                     <label>Cost Center</label>
-                    <input type="text" class="form-control" placeholder="Enter Cost Center" ngModel name="costCenter">
+                    <input type="text" class="form-control" placeholder="Enter Cost Center" ngModel name="costCenter" pattern="[a-zA-Z0-9]+" #messageCost="ngModel">
+                    <div *ngIf="!messageCost.valid && messageCost.touched"
+                         class="alert alert-danger" role="alert">
+                        Use alphanumeric characters
+                    </div>
                 </fieldset>
 
         </div>
         <div class="col-lg-6">
 
 
-                <fieldset class="form-group">
+                <fieldset class="form-group"
+                          [class.has-error]="!messageCountry.valid && messageCountry.touched">
                     <label>Country</label>
-                    <input type="text" class="form-control" placeholder="Enter Country" ngModel name="country">
+                    <input type="text" class="form-control" placeholder="Enter Country" ngModel name="country" required pattern="^[a-zA-Z ]+$" #messageCountry="ngModel">
+                    <div *ngIf="!messageCountry.valid && messageCountry.touched"
+                         class="alert alert-danger" role="alert">
+                        Country is required
+                    </div>
                 </fieldset>
 
-                <fieldset class="form-group">
+                <fieldset class="form-group"
+                          [class.has-error]="!messageState.valid && messageState.touched">
                     <label>State or province</label>
-                    <input type="text" class="form-control" placeholder="Enter State" ngModel name="state">
+                    <input type="text" class="form-control" placeholder="Enter State" ngModel name="state" required pattern="^[a-zA-Z ]+$" #messageState="ngModel">
+                    <div *ngIf="!messageState.valid && messageState.touched"
+                         class="alert alert-danger" role="alert">
+                        State is required
+                    </div>
                 </fieldset>
 
-                <fieldset class="form-group">
+                <fieldset class="form-group"
+                          [class.has-error]="!messageCity.valid && messageCity.touched">
                     <label>City</label>
-                    <input type="text" class="form-control" placeholder="Enter City" ngModel name="city">
+                    <input type="text" class="form-control" placeholder="Enter City" ngModel name="city" required pattern="^[a-zA-Z ]+$" #messageCity="ngModel">
+                    <div *ngIf="!messageCity.valid && messageCity.touched"
+                         class="alert alert-danger" role="alert">
+                        City is required
+                    </div>
                 </fieldset>
 
-                <fieldset class="form-group">
+                <fieldset class="form-group"
+                          [class.has-error]="!messageAddress.valid && messageAddress.touched">
                     <label>Address</label>
-                    <input type="text" class="form-control" placeholder="Enter Address" ngModel name="address">
+                    <input type="text" class="form-control" placeholder="Enter Address" ngModel name="address" required pattern="^[a-z0-9\s]+$" #messageAddress="ngModel">
+                    <div *ngIf="!messageAddress.valid && messageAddress.touched"
+                         class="alert alert-danger" role="alert">
+                        Address is required
+                    </div>
                 </fieldset>
 
-                <fieldset class="form-group">
+                <fieldset class="form-group"
+                          [class.has-error]="!messageAddressNumber.valid && messageAddressNumber.touched">
                     <label>Address Number</label>
-                    <input type="text" class="form-control" placeholder="Enter Address Number" ngModel name="addressNumber">
+                    <input type="text" class="form-control" placeholder="Enter Address Number" ngModel name="addressNumber" pattern="^[a-z0-9\s]+$" #messageAddressNumber="ngModel">
+                    <div *ngIf="!messageAddressNumber.valid && messageAddressNumber.touched"
+                         class="alert alert-danger" role="alert">
+                        Enter with a valid value
+                    </div>
                 </fieldset>
 
-                <fieldset class="form-group">
+                <fieldset class="form-group"
+                          [class.has-error]="!messageZip.valid && messageZip.touched">
                     <label>Zip Code</label>
-                    <input type="text" class="form-control" placeholder="Enter Zip Code" ngModel name="zipCode">
+                    <input type="text" class="form-control" placeholder="Enter Zip Code" ngModel name="zipCode" required pattern="[a-zA-Z0-9]+" #messageZip="ngModel">
+                    <div *ngIf="!messageZip.valid && messageZip.touched"
+                         class="alert alert-danger" role="alert">
+                        Zip Code is required
+                    </div>
                 </fieldset>
 
-                <fieldset class="form-group">
+                <fieldset class="form-group"
+                          [class.has-error]="!messageManagerBadge.valid && messageManagerBadge.touched">
                     <label>Manager Badge</label>
-                    <input type="text" class="form-control" placeholder="Enter Manager Badge" ngModel name="managerBadge">
+                    <input type="text" class="form-control" placeholder="Enter Manager Badge" ngModel name="managerBadge" pattern="[a-zA-Z0-9]+" #messageManagerBadge="ngModel">
+                    <div *ngIf="!messageManagerBadge.valid && messageManagerBadge.touched"
+                         class="alert alert-danger" role="alert">
+                        Use alphanumeric characters
+                    </div>
                 </fieldset>
 
-                <fieldset class="form-group">
+                <fieldset class="form-group"
+                          [class.has-error]="!messageManagerName.valid && messageManagerName.touched">
                     <label>Manager Name</label>
-                    <input type="text" class="form-control" placeholder="Enter Manager Name" ngModel name="managerName">
+                    <input type="text" class="form-control" placeholder="Enter Manager Name" ngModel name="managerName" pattern="^[a-z0-9\s]+$" #messageManagerName="ngModel">
+                    <div *ngIf="!messageManagerName.valid && messageManagerName.touched"
+                         class="alert alert-danger" role="alert">
+                        Use alphanumeric characters
+                    </div>
                 </fieldset>
 
-                <button type="submit" class="btn btn-primary">Submit Button</button>
-                <button type="reset" class="btn btn-primary">Reset Button</button>
+                <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Submit</button>
+                <button type="reset" class="btn btn-primary">Reset</button>
 
 
 
