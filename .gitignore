@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 yarn-error.log
 # compiled output
@@ -39,3 +40,34 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+=======
+.gradle
+/build/
+!gradle/wrapper/gradle-wrapper.jar
+
+### JAVA ###
+.class
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+/bin/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/ ### bin/
+>>>>>>> refs/remotes/origin/master-backend

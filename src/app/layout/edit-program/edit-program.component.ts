@@ -3,6 +3,8 @@ import { routerTransition } from '../../router.animations';
 
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
     selector: 'app-edit-program',
     templateUrl: './edit-program.component.html',
@@ -21,8 +23,19 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 })
 export class EditProgramComponent {
   closeResult: string;
-
-  constructor(private modalService: NgbModal) {}
+  startDate: NgbDateStruct;
+  endDate: NgbDateStruct;
+  date: {year: number, month: number};
+  getStartDate() {
+      this.startDate = {year: 2017, month: 8, day: 17};
+  }
+  getEndDate() {
+      this.endDate = {year: 2019, month: 8, day: 17};
+  }
+  constructor(private modalService: NgbModal) {
+    // this.getStartDate();
+    // this.getEndDate();
+  }
 
   open(content) {
     this.modalService.open(content, { windowClass: 'dark-modal' });
