@@ -1,20 +1,26 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
+import { PageHeaderModule } from './../../shared';
 import { ProgramListComponent } from './program-list.component';
 
 describe('ProgramListComponent', () => {
-  let component: ProgramListComponent;
-  let fixture: ComponentFixture<ProgramListComponent>;
+  let component: ProgramList;
+  let fixture: ComponentFixture<ProgramList>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProgramListComponent ]
+    imports: [
+      RouterTestingModule,
+      PageHeaderModule,
+    ],
+      declarations: [ ProgramList ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProgramListComponent);
+    fixture = TestBed.createComponent(ProgramList);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

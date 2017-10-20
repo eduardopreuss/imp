@@ -1,0 +1,54 @@
+<div [@routerTransition]>
+    <!--<app-page-header [heading]="'Create Program'" [icon]="'fa-edit'"></app-page-header>-->
+	<div class="row">
+        <div class="col-lg-12">
+            <h4>Create Program</h4>
+        </div>
+    </div>
+    <form role="form" method="post" #f="ngForm" (ngSubmit)="onSubmit(f)">
+		
+		<div class="form-group">
+			<label class="control-label" for="programTitle">Program Title</label>
+			<input type="text" id="programTitle" name="programTitle" class="form-control" placeholder="Enter the Program Title" ngModel name="title" required #title="ngModel">
+			<div *ngIf="!title.valid && title.touched" class="alert alert-danger" role="alert">
+				The program must have a title
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="control-label" for="programDescription">Program Description</label>
+			<textarea class="form-control" id="programDescription" rows="6" cols = "20" placeholder="Enter Program Description" ngModel name="description" required #description="ngModel"></textarea>
+			<div *ngIf="!description.valid && description.touched" class="alert alert-danger" role="alert">
+				The program must have a description
+			</div>
+		</div>
+		
+		<!-- Auto-complete this \/ with the name of the coordinator that's using the page, but can also put other coordinator name. -->
+		<div class="form-group">
+			<label class="control-label" for="programOwner">Program Owner</label>
+			<input type="text" id="programOwner" name="programOwner" class="form-control" placeholder="Enter the name of the Owner of this Program" ngModel name="ownerBadge" required #owner="ngModel">
+			<div *ngIf="!owner.valid && owner.touched" class="alert alert-danger" role="alert">
+				The program must have a title
+			</div>
+		</div>
+		
+		<div class="container form-group" style="display: flex; flex-direction: row; justify-content: flex-start; align-items: flex-start; margin-left: 0px;">
+			<div class="form-group" style="margin-right: 20px;">
+				<label class="control-label" for="startDate">Start Date</label>
+				<div>
+					<ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next" id="startDate" name="startDate" required></ngb-datepicker>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="control-label" for="endDate">End Date</label>
+				<div>
+					<ngb-datepicker #dp [(ngModel)]="model2" (navigate)="date = $event.next" id="endDate" name="endDate" required></ngb-datepicker>
+				</div>
+			</div>
+		</div>
+		
+		<button type="submit" class="btn btn-primary" [disabled]="!f.valid">Create Program</button>
+		
+	</form>
+</div>
