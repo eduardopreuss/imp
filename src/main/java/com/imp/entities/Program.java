@@ -13,10 +13,12 @@ import javax.persistence.SequenceGenerator;
 import org.springframework.beans.factory.annotation.Required;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.imp.converters.LocalDateAttributeConverter;
 import com.imp.deserializer.LocalDateDeserializer;
 import com.imp.exceptions.DescriptionMustHaveLessThan400CharactersException;
 import com.imp.exceptions.StartDateAfterEndDateException;
+import com.imp.serializer.LocalDateSerializer;
 
 
 /**
@@ -129,6 +131,7 @@ public class Program extends BaseEntity {
 	/**
 	 * @return the Program's start date
 	 */
+	@JsonSerialize( using = LocalDateSerializer.class)
 	public LocalDate getStartDate() {
 		return startDate;
 	}
@@ -155,6 +158,7 @@ public class Program extends BaseEntity {
 	/**
 	 * @return the Program's end date
 	 */
+	@JsonSerialize( using = LocalDateSerializer.class)
 	public LocalDate getEndDate() {
 		return endDate;
 	}
