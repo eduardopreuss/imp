@@ -12,7 +12,6 @@ import {Headers} from '@angular/http';
 export class UserComponent implements OnInit {
 
 
-
   constructor(private http: Http, private options: RequestOptions) {
 
       let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -21,10 +20,7 @@ export class UserComponent implements OnInit {
   }
 
     onSubmit(form){
-
-        this.http.post('api/user', JSON.stringify(form.value), this.options)
-            .map( res => res.json())
-            .subscribe();
+        this.http.post('api/user', JSON.stringify(form.value), this.options).subscribe();
     }
 
   ngOnInit() {
