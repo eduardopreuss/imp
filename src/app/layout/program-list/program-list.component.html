@@ -20,10 +20,40 @@
                             <td><a href="#" class="people-link">{{ program.owner }}</a></td>
                             <td>{{ program.startDate }}</td>
                             <td>{{ program.endDate }}</td>
-                            <td class="fa fa-trash-o pull-right"></td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <a [routerLink]="['/edit-program']" [routerLinkActive]="['router-link-active']">
+                                            <i class="fa fa-pencil-square-o" title="Edit Program"></i>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <ng-template #delete let-c="close" let-d="dismiss">
+                                            <div class="modal-header">
+                                              <h4 class="modal-title">Delete Program</h4>
+                                              <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                                                <span aria-hidden="true">&times;</span>
+                                              </button>
+                                            </div>
+                                            <div class="modal-body">
+                                              <p>Are you sure you want to <b>delete</b> this Program?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-primary" (click)="c('Close click')">Yes</button>
+                                              <button type="button" class="btn btn-danger" (click)="c('Close click')">No</button>
+                                            </div>
+                                          </ng-template>
+                                        <i class="fa fa-trash-o delete-link" (click)="open(delete)" style="cursor:pointer; color: #f44242" title="Delete Program"></i>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <a [routerLink]="['/program-details']" [routerLinkActive]="['router-link-active']"><i class="fa fa-info" title="Program Details" style="color:green"></i></a>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
+                <a [routerLink]="['/create-program']" [routerLinkActive]="['router-link-active']" class="btn btn-success">New Program</a>
             </div>
         </div>
     </div>

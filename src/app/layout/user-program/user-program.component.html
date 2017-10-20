@@ -1,0 +1,42 @@
+<div [@routerTransition]>
+    <app-page-header [heading]="'Relate User to Program'" [icon]="'fa-edit'"></app-page-header>
+
+    <form role="form">
+		
+		<div class="form-group">
+		    <label for="programTitle" class="control-label">Program Title</label>
+		    <input type="text" id="programTitle" name="programTitle" class="form-control" placeholder="Program test" disabled>
+		</div>
+		
+		<div class="form-group">
+		    <label for="users">Select User</label>
+		    <select class="form-control" id="users">
+		      <option>Alvaro Souza Pereira da Silva</option>
+		      <option>Renan Kummer de Jesus</option>
+		      <option>Iohanna Campos</option>
+		      <option>Anderson Muniz</option>
+		      <option>Joao Pedro Cruz</option>
+		      <option>Felipe Leivas Machado</option>
+		    </select>
+		</div>
+		
+	</form>
+    
+    <ng-template #userToProgram let-c="close" let-d="dismiss">
+	  <div class="modal-header">
+	    <h4 class="modal-title">Relate User to Program</h4>
+	    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+	      <span aria-hidden="true">&times;</span>
+	    </button>
+	  </div>
+	  <div class="modal-body">
+	    <p>Are you sure you want to relate this user to the Program?</p>
+	  </div>
+	  <div class="modal-footer">
+	    <button type="button" class="btn btn-primary" (click)="c('Close click')">Yes</button>
+	  	<button type="button" class="btn btn-danger" (click)="c('Close click')">No</button>
+	  </div>
+	</ng-template>
+
+	<button class="btn btn-primary" (click)="open(userToProgram)">Relate User to Program</button>
+</div>

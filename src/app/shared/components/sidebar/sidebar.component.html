@@ -1,3 +1,4 @@
+
 <nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
     <ul class="list-group">
         <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
@@ -5,19 +6,14 @@
         </a>
         
         <div class="nested-menu">
-            <a class="list-group-item" (click)="addExpandClass('pages')">
-                <span><i class="fa fa-plus"></i>&nbsp; {{ 'Programs' | translate }}</span>
+            <a class="list-group-item" (click)="addExpandClass('programs')">
+                <span><i class="fa fa-tasks"></i>&nbsp; {{ 'Programs' | translate }}</span>
             </a>
-            <li class="nested" [class.expand]="showMenu === 'pages'">
+            <li class="nested" [class.expand]="showMenu === 'programs'">
                 <ul class="submenu">
                     <li>
                         <a [routerLink]="['/create-program']" [routerLinkActive]="['router-link-active']" class="list-group-item">
                         	<span>{{ 'Create Program' | translate }}</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a [routerLink]="['/edit-program']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                        	<span>{{ 'Edit Program' | translate }}</span>
                         </a>
                     </li>
                     <li>
@@ -28,13 +24,18 @@
                 </ul>
             </li>
         </div>
-                <div class="nested-menu">
-            <a class="list-group-item" (click)="addExpandClass('pages')">
-                <span><i class="fa fa-plus"></i>&nbsp; {{ 'Users' | translate }}</span>
+        <div class="nested-menu">
+            <a class="list-group-item" (click)="addExpandClass('users')">
+                <span><i class="fa fa-users"></i>&nbsp; {{ 'Users' | translate }}</span>
             </a>
-            <li class="nested" [class.expand]="showMenu === 'pages'">
+            <li class="nested" [class.expand]="showMenu === 'users'">
                 <ul class="submenu">
                     <li>
+                        <a [routerLink]="['/admin-rights']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                        	<span>{{ 'Admin Rights User' | translate }}</span>
+                        </a>
+                    </li>
+                     <li>
                         <a [routerLink]="['/user']" [routerLinkActive]="['router-link-active']" class="list-group-item">
                         	<span>{{ 'Create User' | translate }}</span>
                         </a>
