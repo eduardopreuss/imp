@@ -9,6 +9,7 @@ import {Headers} from '@angular/http';
   styleUrls: ['./user.component.scss'],
     animations: [routerTransition()]
 })
+
 export class UserComponent implements OnInit {
 
 
