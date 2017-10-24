@@ -23,11 +23,13 @@ public class LocalDateSerializer extends StdSerializer<LocalDate> {
 	LocalDate value, JsonGenerator jgen, SerializerProvider provider) 
      throws IOException, JsonProcessingException {
  
-       jgen.writeStartObject();
-       jgen.writeNumberField("year", value.getYear());
+       //jgen.writeStartObject();
+       /*jgen.writeNumberField("year", value.getYear());
        jgen.writeNumberField("month", value.getMonthValue());
-       jgen.writeNumberField("day", value.getDayOfMonth());
-       jgen.writeEndObject();
+       jgen.writeNumberField("day", value.getDayOfMonth());*/
+       String date = value.getDayOfMonth() + "/" + value.getMonthValue() + "/" + value.getYear();
+       jgen.writeString(date);
+       //jgen.writeEndObject();
    }
 } 
 

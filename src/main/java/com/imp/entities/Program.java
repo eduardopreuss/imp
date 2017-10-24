@@ -12,6 +12,7 @@ import javax.persistence.SequenceGenerator;
 
 import org.springframework.beans.factory.annotation.Required;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.imp.converters.LocalDateAttributeConverter;
@@ -180,6 +181,7 @@ public class Program extends BaseEntity {
 	/**
 	 * @return a list with all user's assigned in this program
 	 */
+	@JsonIgnore
 	public List<User> getProgramUsers() {
 		return this.programUsers;
 	}

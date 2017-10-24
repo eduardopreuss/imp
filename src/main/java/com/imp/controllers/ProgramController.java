@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,7 +17,7 @@ import com.imp.exceptions.CannotFindAProgramWithThatId;
 import com.imp.exceptions.StartDateAfterEndDateException;
 import com.imp.controllers.ProgramController;
 import com.imp.entities.Program;
-
+@CrossOrigin
 @RestController
 public class ProgramController {
 	ProgramService ps;
