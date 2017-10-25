@@ -11,7 +11,7 @@
 
                 <fieldset class="form-group"
                           [class.has-error]="!messageBagde.valid && messageBagde.touched">
-                    <label>Badge</label>
+                    <label>Badge <span class="req">*</span></label>
                     <input type="text" class="form-control" placeholder="Enter Badge" ngModel name="badge" pattern="[a-zA-Z0-9]+" #messageBagde="ngModel">
                     <div *ngIf="!messageBagde.valid && messageBagde.touched"
                         class="alert alert-danger" role="alert">
