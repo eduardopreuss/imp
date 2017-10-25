@@ -13,7 +13,7 @@ import { UserDetailsComponent } from './user-details/user-details.component';
         CommonModule,
         NgbDropdownModule.forRoot(),
         LayoutRoutingModule,
-        TranslateModule
+        TranslateModule,
     ],
     declarations: [
         LayoutComponent,
