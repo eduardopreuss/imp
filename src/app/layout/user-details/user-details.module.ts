@@ -10,7 +10,7 @@ import { PageHeaderModule } from './../../shared/modules/page-header/page-header
 @NgModule({
     imports: [
         CommonModule,
-        UserDetailsRoutinModule,
+        UserDetailsRoutingModule,
         PageHeaderModule,
         FormsModule,
         HttpModule
