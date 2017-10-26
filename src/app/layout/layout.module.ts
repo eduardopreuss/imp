@@ -8,6 +8,8 @@ import { LayoutComponent } from './layout.component';
 import { HeaderComponent, SidebarComponent } from '../shared';
 import { UserDetailsComponent } from './user-details/user-details.component';
 
+
+
 @NgModule({
     imports: [
         CommonModule,
