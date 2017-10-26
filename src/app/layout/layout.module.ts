@@ -6,7 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
 import { HeaderComponent, SidebarComponent } from '../shared';
-import { UserDetailsComponent } from './user-details/user-details.component';
+
 
 
 
@@ -20,8 +20,7 @@ import { UserDetailsComponent } from './user-details/user-details.component';
     declarations: [
         LayoutComponent,
         HeaderComponent,
-        SidebarComponent,
-        UserDetailsComponent,
+        SidebarComponent
     ]
 })
 export class LayoutModule { }

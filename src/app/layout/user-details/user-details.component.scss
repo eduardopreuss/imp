@@ -1,0 +1,33 @@
+#profile-pic{
+    cursor: pointer;
+    width: 150px;
+    height: 150px;
+    border: 2px solid #007db8;
+    border-radius: 50%;
+}
+
+input.hidden{
+    position: absolute;
+    left: -9999px;
+}
+
+span{
+    position: relative;
+    margin-left: 4px;
+}
+
+.card-header{
+    background-color: #007db8;
+}
+
+.card-header h5{
+    color: white;
+}
+
+.card-body{
+    background:#fff;
+}
+
+.details li{
+    list-style: none;
+}
