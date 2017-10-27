@@ -3,23 +3,6 @@
 
     <div class="container my-5">
         <ngb-tabset>
-            <ngb-tab title="User Info">
-                <ng-template ngbTabContent>
-                    <div class="container my-5">
-                        <ul style="list-style:none" *ngFor="let users of user">
-                            <li>
-                                <strong>Badge: </strong> {{ users.badge }}
-                            </li>
-                            <li>
-                                <strong>Full Name: </strong> {{ users.fullName }}
-                            </li>
-                            <li>
-                                <strong>Birthday: </strong> {{ users.birthDate }}
-                            </li>
-                        </ul>
-                    </div>
-                </ng-template>
-            </ngb-tab>
             <ngb-tab title="Related Programs">
                 <ng-template ngbTabContent>
                     <table class="table my-5">
