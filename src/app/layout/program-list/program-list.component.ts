@@ -20,15 +20,16 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
     `]
 })
 export class ProgramListComponent {
-tableHeader: string[];
+    tableHeader: string[];
     thFontWeight: string;
     program: object[];
     closeResult: string;
 
     constructor(private modalService: NgbModal) {
-        this.tableHeader = ['Title', 'Description', 'Owner', 'Start Date', 'End Date', 'Actions'];
+        this.tableHeader = ['Change Point Id', 'Title', 'Description', 'Owner', 'Start Date', 'End Date', 'Actions'];
 
             this.program = [{
+                changePointId: '1',
                 title: 'Dell IT Academy',
                 description: 'Program developed for the purpose of hiring new interns',
                 owner: 'Muller, Nelson',
@@ -36,6 +37,7 @@ tableHeader: string[];
                 endDate: '01/31/2018'
             },
             {
+                changePointId: '2',
                 title: 'U@Dell',
                 description: 'Talent Aquisition Program',
                 owner: 'Fernandes, Gabriela',
@@ -43,6 +45,7 @@ tableHeader: string[];
                 endDate: '12/31/2017'
             },
             {
+                changePointId: '3',
                 title: 'Tests Program',
                 description: 'Program for testing software',
                 owner: 'Callegari, Daniel',
@@ -50,6 +53,7 @@ tableHeader: string[];
                 endDate: '12/31/2017'
             },
             {
+                changePointId: '4',
                 title: 'DevTeamCoop',
                 description: 'Software development program created for undergraduate students!!!',
                 owner: 'Dell, Michael',

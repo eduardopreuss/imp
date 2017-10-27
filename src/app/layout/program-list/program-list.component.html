@@ -11,10 +11,11 @@
             <div class="col-md-12">
                 <table class="table table-responsive table-bordered" id="programList">
                     <thead>
-                        <th *ngFor="let header of tableHeader">{{ header }}</th>
+                        <th *ngFor="let header of tableHeader" class="text-center">{{ header }}</th>
                     </thead>
                     <tbody>
                         <tr *ngFor="let program of program">
+                            <td class="text-center" >{{ program.changePointId }}</td>
                             <td>{{ program.title }}</td>
                             <td>{{ program.description }}</td>
                             <td><a href="#" class="people-link">{{ program.owner }}</a></td>

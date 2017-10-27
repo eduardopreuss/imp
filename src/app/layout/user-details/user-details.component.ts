@@ -9,6 +9,7 @@ export class UserDetailsComponent implements OnInit {
 
     tableHeader: string[];
     program: object[];
+    user: object[];
 
     constructor() {
         this.tableHeader = ['Title', 'Start Date', 'End Date', 'Role', 'Status'];
@@ -40,6 +41,13 @@ export class UserDetailsComponent implements OnInit {
             endDate: '12/31/2017',
             role: 'Coordinator',
             status: 'Active'
+        }];
+
+        this.user = [{
+            badge: 332435,
+            name: 'John Doe',
+            fullName: 'John Herman Doe',
+            birthDate: '02/05/1985'
         }]
     }
 

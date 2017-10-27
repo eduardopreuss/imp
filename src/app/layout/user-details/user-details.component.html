@@ -1,11 +1,23 @@
 <div class="container my-5">
-    <h1>User Details:</h1>
+    <h1 *ngFor="let users of user">{{ users.name }} - {{ users.badge }}</h1>
 
     <div class="container my-5">
         <ngb-tabset>
             <ngb-tab title="User Info">
                 <ng-template ngbTabContent>
-                    
+                    <div class="container my-5">
+                        <ul style="list-style:none" *ngFor="let users of user">
+                            <li>
+                                <strong>Badge: </strong> {{ users.badge }}
+                            </li>
+                            <li>
+                                <strong>Full Name: </strong> {{ users.fullName }}
+                            </li>
+                            <li>
+                                <strong>Birthday: </strong> {{ users.birthDate }}
+                            </li>
+                        </ul>
+                    </div>
                 </ng-template>
             </ngb-tab>
             <ngb-tab title="Related Programs">
@@ -16,11 +28,11 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let programs of program">
-                                <td>{{  programs.title }}</td>
-                                <td>{{  programs.startDate }}</td>
-                                <td>{{  programs.endDate }}</td>
-                                <td>{{  programs.role }}</td>
-                                <td>{{  programs.status }}</td>
+                                <td>{{ programs.title }}</td>
+                                <td>{{ programs.startDate }}</td>
+                                <td>{{ programs.endDate }}</td>
+                                <td>{{ programs.role }}</td>
+                                <td>{{ programs.status }}</td>
                             </tr>
                         </tbody>
                     </table>
