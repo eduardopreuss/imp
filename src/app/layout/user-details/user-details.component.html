@@ -28,7 +28,7 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let programs of program">
-                                <td>{{ programs.title }}</td>
+                                <td><a [routerLink]="['/program-details']">{{ programs.title }} </a></td>
                                 <td>{{ programs.startDate }}</td>
                                 <td>{{ programs.endDate }}</td>
                                 <td>{{ programs.role }}</td>
